@@ -1,0 +1,159 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.navbar{
+    height: 70px;
+    background-color: #C0BAB0;
+    display: flex;
+    align-items: center;
+
+}
+.home img{
+    height: 40px;
+    width: 40px;
+    background-color: #C0BAB0;
+    margin-left: 20px;
+}
+
+.body{
+    height:92.3vh;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-content{
+    height: 80%;
+    width: 75%;
+    display: flex;
+}
+.left{
+    height: 100%;
+    width: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.left-content{
+    
+    width: 90%;
+    height: 90%;
+    color: aquamarine;
+}
+
+.left-header{
+    font-weight:bolder;
+    font-size:1.3em;
+    color: #f25019;
+    margin: 0;
+    width: 250px;
+    position: relative;
+    font-weight: bolder;
+    font-family: Poppins;
+    align-items: center;
+    flex-shrink: 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 1;
+}
+.left-footer{
+    margin-top: 50px;
+    margin-left: 60px;
+    color: #02073f;
+}
+
+.left-footer h1{
+    color: #02073f;
+    margin: 0;
+    width: 250px;
+    position: relative;
+    font-weight: bolder;
+    font-family: Poppins;
+}
+
+.right{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+img{
+    height: 100%;
+    width: 100%;
+}
+
+.left-footer-bottom{
+
+    font-family: poppins;
+    margin-top: 40px;
+}
+
+.register-as-seller{
+    display: flex;
+    justify-content: center;
+}
+.register-as-buyer{
+    justify-content: center;
+    display: flex;
+}
+
+.email{
+    margin-top: 10px;
+}
+
+.signin-button input{
+    margin-left: 20px;
+    margin-top: 10px;
+    height: 26px;
+    width: 60%;
+    padding-left: 6px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.password-label{
+    margin-top: 20px;
+}
+
+.password-label input{
+    margin-left: 20px;
+    margin-top: 10px;
+    height: 26px;
+    width: 60%;
+    padding-left: 6px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.forgot-password{
+    margin-top: 60px;
+}
+
+.new-user-registration{
+    width: 90%;
+    height: 38px;
+    background-color: #f25019;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    font-size:medium;
+}
+
+.register{
+    width: 90%;
+    margin: 20px 5px;
+}
+
+.register-as-buyer1 , .register-as-seller1{
+    
+    cursor: pointer;
+    margin-left: 6px;
+    font-weight: bold;
+}
