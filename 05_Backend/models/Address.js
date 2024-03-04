@@ -12,6 +12,10 @@
 const mongoose = require("mongoose");
 
 const addressSchema = new mongoose.Schema({
+  addressId: {
+    type: Number,
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,
