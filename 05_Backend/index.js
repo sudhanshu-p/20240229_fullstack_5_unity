@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
+// Database connection
+const { connectToDatabase } = require("./database/db");
 // Importing Internal Routers
 const authRouter = require("./router/authRouter");
 const userRouter = require("./router/userRouter");
@@ -13,7 +15,6 @@ const sellerRouter = require("./router/sellerRouter");
 // Setting up the app
 const app = express();
 app.use(bodyParser.json());
-const PORT = process.env.PORT || 3000;
 
 // Routes
 // Authentication Router
@@ -23,12 +24,19 @@ app.use("/auth", authRouter);
 // app.use("/user", userRouter);
 
 // Order Router
-// app.use("/order", orderRouter);
+app.use("/order", orderRouter);
 
 // Product Router
 // app.use("/product", productRouter);
 
 // Seller Router
-// app.use("/seller", sellerRouter);
+app.use("/seller", sellerRouter);
 
-app.listen(PORT, () => console.log("Server live"));
+async function startServerAndDatabase() {
+  await connectToDatabase();
+  app.listen(process.env.PORT || 3000, () =>
+    console.log(`Server live at ${process.env.PORT || 3000}`)
+  );
+}
+
+startServerAndDatabase();
