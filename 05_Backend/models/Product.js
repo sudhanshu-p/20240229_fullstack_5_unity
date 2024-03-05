@@ -1,26 +1,11 @@
-// Schema for Product
-// Table product_collection {
-//   productId integer [primary key]
-//   title varchar
-//   description varchar
-//   trending bool
-//   stock integer [note: ">=0"]
-//   thumbnailUrl varchar
-//   images array
-//   seller_id number
-//   category varchar
-//   price float
-//   discountPrice float
-//   reviews array [note: "Array<reviewId>"]
-// }
-
+// Purpose: Model for Product.
 const mongoose = require("mongoose");
 
+// Importing the models to reference them in the productSchema
+const Review = require("./Review");
+const User = require("./user");
+
 const productSchema = new mongoose.Schema({
-  productId: {
-    type: Number,
-    required: true,
-  },
   title: {
     type: String,
     required: true,
@@ -35,7 +20,6 @@ const productSchema = new mongoose.Schema({
   },
   trending: {
     type: Boolean,
-    required: true,
   },
   stock: {
     type: Number,
@@ -53,7 +37,8 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   seller_id: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   category: {
@@ -70,10 +55,12 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  reviews: {
-    type: Array,
-    required: true,
-  },
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Product", productSchema);

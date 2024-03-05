@@ -10,11 +10,11 @@
 
 const mongoose = require("mongoose");
 
+// Importing the models to reference them in the reviewSchema
+const Product = require("./Product");
+const User = require("./user");
+
 const reviewSchema = new mongoose.Schema({
-  reviewId: {
-    type: Number,
-    required: true,
-  },
   ratingTitle: {
     type: String,
     required: true,
@@ -28,11 +28,13 @@ const reviewSchema = new mongoose.Schema({
     required: true,
   },
   productId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
     required: true,
   },
   userId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
 });

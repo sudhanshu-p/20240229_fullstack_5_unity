@@ -12,11 +12,12 @@
 
 const mongoose = require("mongoose");
 
+// Importing the models to reference them in the userSchema
+const Address = require("./Address");
+const Product = require("./Product");
+const Order = require("./Order");
+
 const userSchema = new mongoose.Schema({
-  userId: {
-    type: Number,
-    required: true,
-  },
   username: {
     type: String,
     required: true,
@@ -33,18 +34,26 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
-    enum: ["User", "Seller", "Admin"],
+    enum: ["user", "seller", "admin"],
   },
-  orders: {
-    type: Array,
-    required: true,
-  },
-  products: {
-    type: Array,
-    required: true,
-  },
-  addresses: {
-    type: Array,
-    required: true,
-  },
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+    },
+  ],
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
+  addresses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Address",
+    },
+  ],
 });
+
+module.exports = mongoose.model("User", userSchema);

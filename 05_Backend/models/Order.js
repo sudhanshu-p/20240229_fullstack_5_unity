@@ -1,22 +1,16 @@
 // Schema for Order
-/* Table orders_collection {
-    orderId integer [primary key]
-    productId integer
-    productQuantity integer
-    customerId integer
-    sellerId integer
-    orderStatus varchar
-    timePlaced datetime
-  }*/
 const mongoose = require("mongoose");
 
+// Importing the models to reference them in the orderSchema
+const Product = require("./Product");
+const User = require("./user");
+const Address = require("./Address");
+
+
 const orderSchema = new mongoose.Schema({
-  orderId: {
-    type: Number,
-    required: true,
-  },
   productId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
     required: true,
   },
   productQuantity: {
@@ -24,11 +18,13 @@ const orderSchema = new mongoose.Schema({
     required: true,
   },
   customerId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   sellerId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   orderStatus: {
@@ -39,6 +35,11 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now,
+  },
+  address: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Address",
+    required: true,
   },
 });
 
