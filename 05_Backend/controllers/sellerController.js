@@ -1,5 +1,3 @@
-// External dependencies
-
 // Internal Imports
 const Product = require("../models/Product");
 const Order = require("../models/Order");
@@ -57,6 +55,7 @@ async function createProduct(req, res) {
   });
 
   try {
+    // Save the product
     const savedProduct = await product.save();
     res.json({ product: savedProduct });
   } catch (err) {
@@ -65,7 +64,6 @@ async function createProduct(req, res) {
 }
 
 /** Controller for updating product */
-
 async function updateProduct(req, res) {
   const {
     title,
