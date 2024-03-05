@@ -125,6 +125,34 @@ async function sellerValidator(sellerId) {
   return true;
 }
 
+// Validate if a category exists in the database
+function isValidCategory(category) {
+  const validCategories = ['Electronics', 'Clothing', 'Books', 'Toys']; // Needs to be replaced with databse
+  return validCategories.includes(category);
+}
+
+// Validate if a rating is between 1 and 5
+function isValidRating(rating) {
+    if (isNaN(rating) || rating < 1 || rating > 5) {
+        return { valid: false, message: 'Rating should be a number between 1 and 5 (inclusive).' };
+    }
+    return { valid: true };
+}
+
+// Validate if a price is not negative and greater than or equal to 10
+function isValidPrice(price) {
+    if (isNaN(price) || price < 10) {
+        return { valid: false, message: 'Price should be a number greater than or equal to 10.' };
+    }
+    return { valid: true };
+}
+
+
+module.exports = {
+  isValidCategory,
+  isValidRating,
+  isValidPrice,
+};
 module.exports = {
   titleValidator,
   descriptionValidator,

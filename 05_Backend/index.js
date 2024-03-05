@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use("/auth", authRouter);
 
 // User Router
-// app.use("/user", userRouter);
+app.use("/user", userRouter);
 
 // Order Router
 app.use("/order", orderRouter);
