@@ -10,6 +10,11 @@ const {
   validateFields,
 } = require("../dependencies/validators/Address");
 
+const{
+    emailValidator,
+    usernameValidator,
+}= require("../dependencies/validators/User")
+
 async function getUserAddresses(req, res) {
   try {
     // Ensure authorized user
@@ -167,9 +172,81 @@ async function deleteAddress(req, res) {
   }
 }
 
+//get necessary user Details with all the addresses
+async function getUserDetails(req,res){
+    try{
+        //get the user details
+        let user= req.user
+
+        //initiate the final address array to return
+        let addressDetails=[]
+
+        // loop through all the address of user and store it
+        for(let addressid in user.addresses){
+            let CompleteAddress= await Address.findOne({_id: user.addresses[addressid]})
+            
+            addressDetails.push({
+                "first Name": CompleteAddress.firstName,
+                "Last Name": CompleteAddress.lastName,
+                "Street Address": CompleteAddress.streetAddress,
+                "Apartment Number": CompleteAddress.state,
+                "zipCode": CompleteAddress.zipcode
+            })
+            console.log(addressDetails)
+        }
+        
+        // final object to return 
+        let objectToReturn = {
+        "username": user.username,
+        "email": user.email,
+        "addresses": addressDetails
+    }
+
+    //return the status code with object
+    res.status(200).json(objectToReturn)
+    }catch(err){
+        res.status(500).json({message: "internal server error"})
+    }
+}
+
+// update user profile info
+async function updateUserDetails(req,res){
+    try{
+    
+
+    // check if the username and email is valid or not
+    if(!(usernameValidator(req.body.username)) || !(emailValidator(req.body.email))){
+        res.status(402).json({message: "enter valid username and email"})
+    }
+
+    // update the user name and email
+    let user= req.user;
+    user.username=req.body.username;
+    user.email= req.body.email
+    console.log(user)
+
+    // Save the updated profile
+    const updatedUser = await user.save();
+
+    //send the updated profile info
+    res.status(200).json({ 
+        "user Name": updatedUser.username,
+        "Email" : updatedUser.email
+ });
+    }catch(err){
+        res.status(500).json({message: "internal server error"})
+    }
+
+
+}
+
+
+
 module.exports = {
   getUserAddresses,
   createAddress,
   updateAddress,
   deleteAddress,
+  getUserDetails,
+  updateUserDetails
 };
