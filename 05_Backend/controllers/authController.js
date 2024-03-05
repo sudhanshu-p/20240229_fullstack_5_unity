@@ -74,7 +74,7 @@ async function login(req, res) {
     // Send the token in the response Body
     // Once the frontend and backend are connected,
     // the token will be sent in the response header
-    res.status(200).json({ token });
+    res.status(200).json({ token, role: user.role });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

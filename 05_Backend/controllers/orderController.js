@@ -21,7 +21,7 @@ async function updateStatus(req, res) {
   }
 
   // Check if the user is authorized to update the order
-  if (req.user.id !== order.user_id && req.user.id !== order.seller_id) {
+  if (req.user._id !== order.user_id && req.user._id !== order.seller_id) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
@@ -49,7 +49,7 @@ async function getOrderDetails(req, res) {
   }
 
   // Check if the user is authorized to view the order
-  if (req.user.id !== order.user_id && req.user.id !== order.seller_id) {
+  if (req.user._id !== order.user_id && req.user._id !== order.seller_id) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
