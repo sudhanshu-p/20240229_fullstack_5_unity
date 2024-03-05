@@ -17,7 +17,7 @@ const userController = require("../controllers/userController");
 const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
 
 // Address routes
-// router.get("/address", verifyJwt, getUserMiddleware, userController.getUserAddresses);
+router.get("/address", verifyJwt, getUserMiddleware, userController.getUserAddresses);
 router.post("/address", verifyJwt, getUserMiddleware, userController.createAddress);
 router.put("/address", verifyJwt, getUserMiddleware, userController.updateAddress);
 router.delete("/address", verifyJwt, getUserMiddleware, userController.deleteAddress);

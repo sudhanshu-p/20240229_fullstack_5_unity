@@ -1,3 +1,7 @@
+//External Dependencies
+const mongoose = require("mongoose");
+
+// Internal Dependencies
 const User = require("../models/user");
 const Address = require("../models/Address");
 const {
@@ -5,18 +9,19 @@ const {
   basicFieldsCheck,
   validateFields,
 } = require("../dependencies/validators/Address");
-const mongoose = require('mongoose')
 
 async function getUserAddresses(req, res) {
   try {
     // Ensure authorized user
-    const user = await User.findById(req.user.id);
+    const user = await User.find({_id:req.user._id});
+    console.log(user[0])
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     // Extract address IDs
-    const addressIds = user.addresses.map((address) => address._id);
+    console.log(typeof user[0].addresses)
+    const addressIds = user[0].addresses.map((address) => address._id);
 
     // Find Multiple addresses by ID
     const addresses = await Address.find({ _id: { $in: addressIds } });
@@ -36,8 +41,8 @@ async function getUserAddresses(req, res) {
 async function createAddress(req, res) {
   try {
     // Ensure authorized user
-    const user = await User.find({ _id: req.user.id });
-    console.log(user)
+    let user = await User.find({ _id: req.user.id });
+    console.log(user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -69,9 +74,14 @@ async function createAddress(req, res) {
     // Save the new address
     const savedAddress = await address.save();
 
-    // Update user's address ID (optional)
-    req.user.addressId = savedAddress._id;
-    await req.user.save(); // Persist the updated user object (optional)
+    // Find the address by ID and ensure it belongs to the user
+    user = await User.findById(savedAddress.userId);
+
+    // Update user's address ID 
+    user.addresses.push(savedAddress._id)
+
+    // Persist the updated user object 
+    await user.save(); 
 
     res.status(201).json({ address: savedAddress });
   } catch (err) {
@@ -82,15 +92,12 @@ async function createAddress(req, res) {
 
 async function updateAddress(req, res) {
   try {
-    // Ensure authorized user
-    const user = await User.find(req.user._id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
 
-    const { addressId } = req.params.id; // Assuming address ID comes from the route path
+    const addressId = req.query.id; // Assuming address ID comes from the route path
     // Check if the address exists first
-    const addressToChange = await Address.findById(addressId);
+    const addressToChange = await Address.find({_id:addressId});
+    console.log(addressToChange)
+    console.log("done")
     if (!addressToChange) {
       return res.status(404).json({ message: "Address not found" });
     }
@@ -99,7 +106,7 @@ async function updateAddress(req, res) {
     const requestedAddress = req.body;
 
     // Validate address ID and data (consider using a validator)
-    if (basicFieldsCheck(requestedAddress)) {
+    if (!basicFieldsCheck(requestedAddress)) {
       return res
         .status(400)
         .json({ message: "Missing required address fields or invalid ID" });
@@ -107,7 +114,7 @@ async function updateAddress(req, res) {
 
     // Find the address by ID and ensure it belongs to the user
     const address = await Address.findById(addressId);
-    if (!address || address.user.toString() !== req.user.id.toString()) {
+    if (!address || address.userId.toString() !== req.user._id.toString()) {
       return res
         .status(404)
         .json({ message: "Address not found or unauthorized update" });
@@ -133,8 +140,8 @@ async function updateAddress(req, res) {
 
 async function deleteAddress(req, res) {
   try {
-    const addressId  = req.query.id;
-    console.log(addressId)
+    const addressId = req.query.id;
+    console.log(addressId);
     // Validate address ID (consider using a validator)
     if (!addressId) {
       return res.status(400).json({ message: "Missing address ID" });
@@ -142,9 +149,11 @@ async function deleteAddress(req, res) {
 
     // Find the address by ID and ensure it belongs to the user
     // console.log("error here1")
-    const address = await Address.findByIdAndDelete(addressId);
-    console.log(address)
-    console.log("error here")
+    const address = await Address.findByIdAndDelete(
+      mongoose.Types.ObjectId(addressId)
+    );
+    console.log(address);
+    console.log("error here");
     if (!address || address.userId.toString() !== req.user._id.toString()) {
       return res
         .status(404)
