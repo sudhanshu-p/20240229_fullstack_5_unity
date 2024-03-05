@@ -16,6 +16,8 @@ const sellerRouter = require("./router/sellerRouter");
 const app = express();
 app.use(bodyParser.json());
 
+// Using swagger for API documentation
+
 // Routes
 // Authentication Router
 app.use("/auth", authRouter);
@@ -32,6 +34,7 @@ app.use("/order", orderRouter);
 // Seller Router
 app.use("/seller", sellerRouter);
 
+// Starting the server
 async function startServerAndDatabase() {
   await connectToDatabase();
   app.listen(process.env.PORT || 3000, () =>

@@ -41,7 +41,6 @@ async function createProduct(req, res) {
     return res.status(400).json({ message: "Invalid input" });
   }
 
-  console.log(req.user);
   // Create the product
   const product = new Product({
     title,

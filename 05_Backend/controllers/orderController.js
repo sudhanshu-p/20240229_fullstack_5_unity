@@ -49,8 +49,11 @@ async function getOrderDetails(req, res) {
   }
 
   // Check if the user is authorized to view the order
-  if (req.user._id !== order.user_id && req.user._id !== order.seller_id) {
-    return res.status(401).json({ message: "Unauthorized" });
+  if (
+    !req.user._id.equals(order.user_id) &&
+    !req.user._id.equals(order.seller_id)
+  ) {
+    return res.status(401).json({ message: "Unauthorized for this Order" });
   }
 
   // Get the product details for the order
@@ -69,10 +72,14 @@ async function getOrders(req, res) {
 
   // Get the orders based on the user type
   let orders;
-  if (req.user.type === "seller") {
+  if (req.user.role === "seller") {
     orders = await Order.find({ seller_id: id });
-  } else {
+  } else if (req.user.role === "user") {
     orders = await Order.find({ user_id: id });
+  } else if (req.user.role === "admin") {
+    orders = await Order.find({});
+  } else {
+    return res.status(400).json({ message: "Invalid user role" });
   }
 
   // If no orders found

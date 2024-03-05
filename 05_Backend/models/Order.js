@@ -6,6 +6,9 @@ const Product = require("./Product");
 const User = require("./user");
 const Address = require("./Address");
 
+// Other internal dependencies
+const { orderStatus } = require("../dependencies/globals");
+
 const orderSchema = new mongoose.Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -29,7 +32,7 @@ const orderSchema = new mongoose.Schema({
   orderStatus: {
     type: String,
     required: true,
-    enum: ["received", "packed", "shipped", "out-for-delivery", "delivered"],
+    enum: orderStatus,
   },
   timePlaced: {
     type: Date,
