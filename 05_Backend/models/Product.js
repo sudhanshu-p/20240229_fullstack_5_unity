@@ -20,7 +20,6 @@ const productSchema = new mongoose.Schema({
   },
   trending: {
     type: Boolean,
-    required: true,
   },
   stock: {
     type: Number,
