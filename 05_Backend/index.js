@@ -20,15 +20,15 @@ const PORT = process.env.PORT || 3000;
 app.use("/auth", authRouter);
 
 // User Router
-app.use("/user", userRouter);
+// app.use("/user", userRouter);
 
 // Order Router
-app.use("/order", orderRouter);
+// app.use("/order", orderRouter);
 
 // Product Router
-app.use("/product", productRouter);
+// app.use("/product", productRouter);
 
 // Seller Router
-app.use("/seller", sellerRouter);
+// app.use("/seller", sellerRouter);
 
 app.listen(PORT, () => console.log("Server live"));

@@ -1,21 +1,6 @@
-// Schema for Address
-// Table residencies {
-//     addressId integer [primary key]
-//     firstName varchar
-//     lastName varchar
-//     streertAddress varchar
-//     apartmentNumber varchar
-//     state varchar
-//     zipcode number
-//   }
-
 const mongoose = require("mongoose");
 
 const addressSchema = new mongoose.Schema({
-  addressId: {
-    type: Number,
-    required: true,
-  },
   firstName: {
     type: String,
     required: true,
