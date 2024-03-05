@@ -1,13 +1,4 @@
 // Schema for Reviews
-// Table reviews_collection {
-//     reviewId integer [primary key]
-//     ratingTitle varchar
-//     ratingDescription varchar
-//     ratings number
-//     productId number
-//     userId number
-//   }
-
 const mongoose = require("mongoose");
 
 // Importing the models to reference them in the reviewSchema

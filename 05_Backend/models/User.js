@@ -1,21 +1,13 @@
-// Schema for User
-// Table user_collection {
-//     userId integer [primary key]
-//     username varchar
-//     email varchar [unique]
-//     password varchar
-//     role enum [note: "User | Seller | Admin"]
-//     orders array
-//     products array
-//     addresses array
-//   }
-
+// External dependencies
 const mongoose = require("mongoose");
 
 // Importing the models to reference them in the userSchema
 const Address = require("./Address");
 const Product = require("./Product");
 const Order = require("./Order");
+
+// Other internal dependencies
+const { userRoles } = require("../dependencies/globals");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -34,7 +26,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
-    enum: ["user", "seller", "admin"],
+    enum: userRoles,
   },
   orders: [
     {

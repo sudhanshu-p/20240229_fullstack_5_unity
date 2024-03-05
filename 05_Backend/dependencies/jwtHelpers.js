@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 const User = require("../models/user");
+const mongoose = require("mongoose");
 
 /** Middleware helper function to verify JWT token
  * @param {Object} req - request object
@@ -9,7 +10,7 @@ const User = require("../models/user");
  */
 async function verifyJwt(req, res, next) {
   // Token is of the format Bearer `token` in the headers
-  const token = req.headers.authorization.split(" ")[1];
+  const token = req.headers.authorization?.split(" ")[1];
 
   // If there is no token
   if (!token) {
@@ -36,7 +37,7 @@ async function getUserFromId(userId) {
     return false;
   }
 
-  return user;
+  return user[0];
 }
 
 /** Middleware helper function to get and set the user object in request object
@@ -49,7 +50,8 @@ async function getUserMiddleware(req, res, next) {
   if (!user) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-  req.user = user[0];
+
+  req.user = user;
   next();
 }
 
