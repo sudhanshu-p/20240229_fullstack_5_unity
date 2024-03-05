@@ -36,7 +36,7 @@ async function createProduct(req, res) {
     !priceValidator(price) ||
     !discountPriceValidator(discountPrice, price) ||
     !categoryValidator(category) ||
-    !sellerValidator(req.user.id)
+    !sellerValidator(req.user._id)
   ) {
     return res.status(400).json({ message: "Invalid input" });
   }
@@ -51,7 +51,7 @@ async function createProduct(req, res) {
     category,
     price,
     discountPrice,
-    seller_id: req.user.id,
+    seller_id: req.user._id,
   });
 
   try {
@@ -59,6 +59,7 @@ async function createProduct(req, res) {
     const savedProduct = await product.save();
     res.json({ product: savedProduct });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 }
@@ -86,7 +87,7 @@ async function updateProduct(req, res) {
     !priceValidator(price) ||
     !discountPriceValidator(discountPrice, price) ||
     !categoryValidator(category) ||
-    !sellerValidator(req.user.id)
+    !sellerValidator(req.user._id)
   ) {
     return res.status(400).json({ message: "Invalid input" });
   }
@@ -94,27 +95,31 @@ async function updateProduct(req, res) {
   // Update the product
   try {
     // Check if the product exists
-    const product = await Product.findById(req.body.id);
+    let product = await Product.find({ _id: req.body.id });
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
+    product = product[0];
 
     // Check if the user is the seller of the product
-    if (product.seller_id !== req.user.id) {
-      return res.status(401).json({ message: "Unauthorized" });
+    if (!product.seller_id.equals(req.user._id)) {
+      return res.status(401).json({ message: "Unauthorized for this product" });
     }
 
     // Update the product
-    const updatedProduct = await Product.findByIdAndUpdate(req.body.id, {
-      title,
-      description,
-      stock,
-      thumbnailUrl,
-      images,
-      category,
-      price,
-      discountPrice,
-    });
+    const updatedProduct = await Product.findOneAndUpdate(
+      { _id: req.body.id },
+      {
+        title,
+        description,
+        stock,
+        thumbnailUrl,
+        images,
+        category,
+        price,
+        discountPrice,
+      }
+    );
 
     res.json({ product: updatedProduct });
   } catch (err) {
@@ -126,21 +131,24 @@ async function updateProduct(req, res) {
 async function deleteProduct(req, res) {
   try {
     // Check if the product exists
-    const product = await Product.findById(req.body.id);
+    let product = await Product.find({ _id: req.body.id });
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    product = product[0];
+
     // Check if the user is the seller of the product
-    if (product.seller_id !== req.user.id) {
-      return res.status(401).json({ message: "Unauthorized" });
+    if (!product.seller_id.equals(req.user._id)) {
+      return res.status(401).json({ message: "Unauthorized for this product" });
     }
 
     // Delete the product
-    await Product.findByIdAndDelete(req.body.id);
+    await Product.findOneAndDelete({ _id: req.body.id });
 
     res.json({ message: "Product deleted" });
   } catch (err) {
+    console.error(err)
     res.status(500).json({ message: "Internal server error" });
   }
 }
@@ -166,7 +174,7 @@ async function getDashboard(req, res) {
   try {
     // Get the order details
     const orderDetails = await Order.find({
-      seller_id: req.user.id,
+      seller_id: req.user._id,
       timePlaced: { $gte: startDate, $lt: endDate },
     });
 
