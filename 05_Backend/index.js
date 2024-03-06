@@ -28,7 +28,7 @@ app.use("/user", userRouter);
 app.use("/order", orderRouter);
 
 // Product Router
-// app.use("/product", productRouter);
+app.use("/product", productRouter);
 
 // Seller Router
 app.use("/seller", sellerRouter);
