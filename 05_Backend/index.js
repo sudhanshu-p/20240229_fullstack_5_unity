@@ -9,8 +9,9 @@ const { connectToDatabase } = require("./database/db");
 const authRouter = require("./router/authRouter");
 const userRouter = require("./router/userRouter");
 const orderRouter = require("./router/orderRouter");
-const productRouter = require("./router/productRouter");
+// const productRouter = require("./router/productRouter");
 const sellerRouter = require("./router/sellerRouter");
+const checkoutRouter = require("./router/checkoutRouter");
 
 // Setting up the app
 const app = express();
@@ -21,7 +22,7 @@ app.use(bodyParser.json());
 app.use("/auth", authRouter);
 
 // User Router
-// app.use("/user", userRouter);
+app.use("/user", userRouter);
 
 // Order Router
 app.use("/order", orderRouter);
@@ -31,6 +32,9 @@ app.use("/product", productRouter);
 
 // Seller Router
 app.use("/seller", sellerRouter);
+
+// Checkout Router
+app.use("/checkout", checkoutRouter);
 
 async function startServerAndDatabase() {
   await connectToDatabase();

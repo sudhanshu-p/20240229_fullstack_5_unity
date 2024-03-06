@@ -21,7 +21,7 @@ async function updateStatus(req, res) {
   }
 
   // Check if the user is authorized to update the order
-  if (req.user.id !== order.user_id && req.user.id !== order.seller_id) {
+  if (req.user._id !== order.user_id && req.user._id !== order.seller_id) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
@@ -43,23 +43,31 @@ async function getOrderDetails(req, res) {
   const { id } = req.params;
 
   // Check if the order exists
-  const order = await Order.findById(id);
-  if (!order) {
-    return res.status(404).json({ message: "Order not found" });
-  }
+  try {
+    const order = await Order.findOne({ _id: id });
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
 
-  // Check if the user is authorized to view the order
-  if (req.user.id !== order.user_id && req.user.id !== order.seller_id) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
+    // Check if the user is authorized to view the order
+    if (
+      !req.user._id.equals(order.user_id) &&
+      !req.user._id.equals(order.seller_id)
+    ) {
+      return res.status(401).json({ message: "Unauthorized for this Order" });
+    }
 
-  // Get the product details for the order
-  const product = await Product.findById(order.product_id);
-  if (!product) {
-    return res.status(404).json({ message: "Product not found" });
-  }
+    // Get the product details for the order
+    const product = await Product.findById(order.product_id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
-  res.status(200).json({ order, product });
+    res.status(200).json({ order, product });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
 }
 
 /** Controller for getting orders */
@@ -69,10 +77,14 @@ async function getOrders(req, res) {
 
   // Get the orders based on the user type
   let orders;
-  if (req.user.type === "seller") {
+  if (req.user.role === "seller") {
     orders = await Order.find({ seller_id: id });
-  } else {
+  } else if (req.user.role === "user") {
     orders = await Order.find({ user_id: id });
+  } else if (req.user.role === "admin") {
+    orders = await Order.find({});
+  } else {
+    return res.status(400).json({ message: "Invalid user role" });
   }
 
   // If no orders found
