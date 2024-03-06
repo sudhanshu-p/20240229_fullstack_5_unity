@@ -134,24 +134,41 @@ function isValidCategory(category) {
 // Validate if a rating is between 1 and 5
 function isValidRating(rating) {
     if (isNaN(rating) || rating < 1 || rating > 5) {
-        return { valid: false, message: 'Rating should be a number between 1 and 5 (inclusive).' };
+        return false
     }
-    return { valid: true };
+  return true;
 }
 
 // Validate if a price is not negative and greater than or equal to 10
 function isValidPrice(price) {
     if (isNaN(price) || price < 10) {
-        return { valid: false, message: 'Price should be a number greater than or equal to 10.' };
+        return false
     }
-    return { valid: true };
+  return true;
 }
 
+
+
+// Regex to check existence of alphanumeric characters
+function isAlphaNumeric(str) {
+  return /^[a-zA-Z0-9]+$/.test(str);
+}
+
+// Validate search query
+function queryValidator(query){
+  if(!isAlphaNumeric(query)) {
+    return false
+  }
+  
+  return true; // Indicates validation success
+}
 
 module.exports = {
   isValidCategory,
   isValidRating,
   isValidPrice,
+  isAlphaNumeric,
+  queryValidator,
 };
 module.exports = {
   titleValidator,
@@ -163,4 +180,5 @@ module.exports = {
   discountPriceValidator,
   categoryValidator,
   sellerValidator,
+  
 };
