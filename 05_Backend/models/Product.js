@@ -61,6 +61,11 @@ const productSchema = new mongoose.Schema({
       ref: "Review",
     },
   ],
+  ratings: {
+    type: Number,
+    min: 1,
+    max: 5,
+  }
 });
 
 module.exports = mongoose.model("Product", productSchema);

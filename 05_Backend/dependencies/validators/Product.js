@@ -71,7 +71,7 @@ function priceValidator(price) {
     return false;
   }
   // Check for minimum value
-  if (price < 0) {
+  if (price < 10) {
     return false;
   }
   return true;
@@ -84,7 +84,7 @@ function discountPriceValidator(discountPrice, price) {
     return false;
   }
   // Check for minimum value
-  if (discountPrice < 0) {
+  if (discountPrice < 10) {
     return false;
   }
 
@@ -133,21 +133,30 @@ function isValidCategory(category) {
 
 // Validate if a rating is between 1 and 5
 function isValidRating(rating) {
-    if (isNaN(rating) || rating < 1 || rating > 5) {
-        return false
-    }
+  if (isNaN(rating) || rating < 1 || rating > 5) {
+    return false
+  }
   return true;
 }
 
 // Validate if a price is not negative and greater than or equal to 10
 function isValidPrice(price) {
-    if (isNaN(price) || price < 10) {
-        return false
-    }
-  return true;
+  const rangeRegex = /^\d+-\d+$/;
+  if(!rangeRegex.test(price)) {
+    return false
+  }
+  const [minPrice, maxPrice] = priceRange.split('-').map(parseFloat);
+  
+  if(!priceValidator(minPrice) || !priceValidator(maxPrice)) {
+    return false
+  }
+
+  if(minPrice > maxPrice) {
+    return false
+  }
+
+  return true
 }
-
-
 
 // Regex to check existence of alphanumeric characters
 function isAlphaNumeric(str) {
@@ -155,11 +164,11 @@ function isAlphaNumeric(str) {
 }
 
 // Validate search query
-function queryValidator(query){
-  if(!isAlphaNumeric(query)) {
+function queryValidator(query) {
+  if (!isAlphaNumeric(query)) {
     return false
   }
-  
+
   return true; // Indicates validation success
 }
 
@@ -178,5 +187,5 @@ module.exports = {
   isValidPrice,
   isAlphaNumeric,
   queryValidator,
-  
+
 };

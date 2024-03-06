@@ -20,31 +20,54 @@ let reviews = [];
 
 // Controller for adding a review
 async function addReview(req, res) {
-    const { review_id } = req.params;
+    const productId = req.params.id
+
     const {
-        title,
-        description,
-        ratings,
-        productId
+        ratingTitle,
+        ratingDescription,
+        ratings
     } = req.body;
 
     if (!validateRating(req, res)) {
         return res.status(400).json({ error: 'Rating should be a number between 1 and 5 (inclusive).' });
     }
 
+    const review = new Review({
+        ratingTitle,
+        ratingDescription,
+        ratings,
+        productId,
+        userId: req.user.id,
+    });
+
 
     try {
-        const newReview = { review_id, title, description, ratings, productId };
-        reviews.push(newReview);
-        res.json({ reviews });
+        const product = await Product.findOne({ _id: productId });
+
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // Assuming review is an object with a 'ratings' property
+        if (product.ratings) {
+            const newRating = (product.ratings * product.reviews.length + review.ratings) / (product.reviews.length + 1);
+            product.ratings = newRating;
+            await product.save();
+        } else {
+            product.ratings = review.ratings;
+            await product.save();
+        }
+
+        const newReview = await review.save();
+
+        return res.status(200).json({ review: newReview });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
     }
 }
 
 /** Controller for handling product search and sorting */
-
 // Search and filter products
 async function searchProducts(req, res) {
     // /search?search_query=abcd&category=efgh&...
@@ -95,29 +118,24 @@ async function searchProducts(req, res) {
                 return res.status(400).json({ message: "Rating should be between 1 and 5" });
             }
         }
-        
+
         if (price) {
             // Check if price is a valid number
             if (isValidPrice(price)) {
                 // Filter results using a function (e.g., filterResultsByPrice) if needed
                 results = filterResultsByPrice(results, price);
-        
-                // OR directly filter the array based on the price range
-                results = results.filter(product =>
-                    product.price >= minPrice && product.price <= maxPrice
-                );
             } else {
                 return res.status(400).json({ message: "Price should be a number greater than or equal to 10." });
             }
         }
-        
+
         // Handle sorting
         if (sort) {
             results = sortResults(results, sort);
         }
 
         res.json({ results });
-    } 
+    }
     catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
