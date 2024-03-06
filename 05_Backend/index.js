@@ -9,14 +9,13 @@ const { connectToDatabase } = require("./database/db");
 const authRouter = require("./router/authRouter");
 const userRouter = require("./router/userRouter");
 const orderRouter = require("./router/orderRouter");
-const productRouter = require("./router/productRouter");
+// const productRouter = require("./router/productRouter");
 const sellerRouter = require("./router/sellerRouter");
+const checkoutRouter = require("./router/checkoutRouter");
 
 // Setting up the app
 const app = express();
 app.use(bodyParser.json());
-
-// Using swagger for API documentation
 
 // Routes
 // Authentication Router
@@ -34,7 +33,9 @@ app.use("/order", orderRouter);
 // Seller Router
 app.use("/seller", sellerRouter);
 
-// Starting the server
+// Checkout Router
+app.use("/checkout", checkoutRouter);
+
 async function startServerAndDatabase() {
   await connectToDatabase();
   app.listen(process.env.PORT || 3000, () =>
