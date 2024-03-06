@@ -43,26 +43,31 @@ async function getOrderDetails(req, res) {
   const { id } = req.params;
 
   // Check if the order exists
-  const order = await Order.findById(id);
-  if (!order) {
-    return res.status(404).json({ message: "Order not found" });
-  }
+  try {
+    const order = await Order.findOne({ _id: id });
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
 
-  // Check if the user is authorized to view the order
-  if (
-    !req.user._id.equals(order.user_id) &&
-    !req.user._id.equals(order.seller_id)
-  ) {
-    return res.status(401).json({ message: "Unauthorized for this Order" });
-  }
+    // Check if the user is authorized to view the order
+    if (
+      !req.user._id.equals(order.user_id) &&
+      !req.user._id.equals(order.seller_id)
+    ) {
+      return res.status(401).json({ message: "Unauthorized for this Order" });
+    }
 
-  // Get the product details for the order
-  const product = await Product.findById(order.product_id);
-  if (!product) {
-    return res.status(404).json({ message: "Product not found" });
-  }
+    // Get the product details for the order
+    const product = await Product.findById(order.product_id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
-  res.status(200).json({ order, product });
+    res.status(200).json({ order, product });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
 }
 
 /** Controller for getting orders */

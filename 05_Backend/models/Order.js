@@ -44,6 +44,10 @@ const orderSchema = new mongoose.Schema({
     ref: "Address",
     required: true,
   },
+  totalOrderValue: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Order", orderSchema);
