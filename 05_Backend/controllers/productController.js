@@ -1,21 +1,41 @@
 // Internal Imports
-const Product = require("../models/Product");
+const Review = require("../models/Review")
+const Product = require("../models/Product")
 
-const { checkAbusiveWords, validateReviewLength, validateRating, checkReviewIDExists } = require("../dependencies/validators/Reviews");
-const { isAlphaNumeric, sortResults, filterResultsByCategory, filterResultsByRating, filterResultsByPrice } = require("../dependencies/validators/Product");
+const {
+    checkAbusiveWords,
+    validateReviewLength,
+    validateRating,
+} = require("../dependencies/validators/Reviews");
+
+const {
+    isValidCategory,
+    isValidRating,
+    isValidPrice,
+    queryValidator
+} = require("../dependencies/validators/Product");
 
 // Sample array to store reviews
 let reviews = [];
 
 // Controller for adding a review
 async function addReview(req, res) {
-    const { id } = req.params;
-    const { title, description } = req.body;
+    const { review_id } = req.params;
+    const {
+        title,
+        description,
+        ratings,
+        productId
+    } = req.body;
+
+    if (!validateRating(req, res)) {
+        return res.status(400).json({ error: 'Rating should be a number between 1 and 5 (inclusive).' });
+    }
+
+
     try {
-
-        const newReview = { id, title, description };
+        const newReview = { review_id, title, description, ratings, productId };
         reviews.push(newReview);
-
         res.json({ reviews });
     } catch (error) {
         console.error(error);
@@ -27,40 +47,78 @@ async function addReview(req, res) {
 
 // Search and filter products
 async function searchProducts(req, res) {
-    const { query } = req.query;
+    // /search?search_query=abcd&category=efgh&...
+    const { search_query } = req.query;
 
+    // Handle filtering
+    const {
+        category,
+        ratings,
+        price,
+        sort
+    } = req.query;
     // Perform the actual search logic 
-    let results = products;
-    try {
+    let results = await Product.find({})
 
-        // Handle filtering
-        const { category, rating, price, sort } = req.query;
-        if (query) {
-            if (!query || !isAlphaNumeric(query)) {
-                return res.json({ message: 'Please check the spelling or try searching for something else' });
+    try {
+        if (search_query) {
+            // validate the query
+            const queryError = queryValidator(search_query);
+            if (!queryError) {
+                // If there's an error, return a 400 status with the error message
+                return res.status(400).json({ message: 'Please check the spelling or try searching for something else' });
             }
             results = results.filter(product =>
-                product.name.toLowerCase().includes(query.toLowerCase())
+                product.title.toLowerCase().includes(search_query.toLowerCase())
             );
         }
-
         if (category) {
-            results = filterResultsByCategory(results, category);
+            if (isValidCategory(category)) {
+                // results = filterResultsByCategory(results, category);
+                // product.category.toLowerCase() === categoryFilter.toLowerCase()
+                results = results.filter(product =>
+                    product.category.toLowerCase() === categoryFilter.toLowerCase()
+                );
+            }
+            else {
+                res.status(400)
+            }
         }
-        if (rating) {
-            results = filterResultsByRating(results, rating);
+        if (ratings) {
+            if (isValidRating(ratings)) {
+                results = filterResultsByRating(results, ratings);
+                // product.rating >= minRating && product.rating <= maxRating
+                results = results.filter(product =>
+                    product.ratings >= minRating && product.ratings <= maxRating
+                );
+            } else {
+                return res.status(400).json({ message: "Rating should be between 1 and 5" });
+            }
         }
+        
         if (price) {
-            results = filterResultsByPrice(results, price);
+            // Check if price is a valid number
+            if (isValidPrice(price)) {
+                // Filter results using a function (e.g., filterResultsByPrice) if needed
+                results = filterResultsByPrice(results, price);
+        
+                // OR directly filter the array based on the price range
+                results = results.filter(product =>
+                    product.price >= minPrice && product.price <= maxPrice
+                );
+            } else {
+                return res.status(400).json({ message: "Price should be a number greater than or equal to 10." });
+            }
         }
-
+        
         // Handle sorting
         if (sort) {
             results = sortResults(results, sort);
         }
 
         res.json({ results });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
@@ -73,7 +131,6 @@ async function getTrendingProductsController(req, res) {
 
         if (role === 'seller') {
             // Assuming seller-specific logic to fetch seller's products
-            // Modify this based on your actual data structure
             const sellerProducts = products.filter(product => product.seller_id === userId);
             res.json({ sellerProducts });
         } else if (role === 'user') {
@@ -86,11 +143,6 @@ async function getTrendingProductsController(req, res) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
-}
-
-// Regex to check existence of alphanumeric characters
-function isAlphaNumeric(str) {
-    return /^[a-zA-Z0-9]+$/.test(str);
 }
 
 // Implement your logic to sort by rating, price, or default to sorting by name

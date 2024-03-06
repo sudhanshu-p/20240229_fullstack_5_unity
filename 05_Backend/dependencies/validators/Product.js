@@ -164,13 +164,6 @@ function queryValidator(query){
 }
 
 module.exports = {
-  isValidCategory,
-  isValidRating,
-  isValidPrice,
-  isAlphaNumeric,
-  queryValidator,
-};
-module.exports = {
   titleValidator,
   descriptionValidator,
   stockValidator,
@@ -180,5 +173,10 @@ module.exports = {
   discountPriceValidator,
   categoryValidator,
   sellerValidator,
+  isValidCategory,
+  isValidRating,
+  isValidPrice,
+  isAlphaNumeric,
+  queryValidator,
   
 };
