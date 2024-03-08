@@ -127,8 +127,9 @@ async function sellerValidator(sellerId) {
 
 // Validate if a category exists in the database
 function isValidCategory(category) {
-  const validCategories = ['Electronics', 'Clothing', 'Books', 'Toys']; // Needs to be replaced with databse
-  return validCategories.includes(category);
+  // const validCategories = ['Electronics', 'Clothing', 'Books', 'Toys']; // Needs to be replaced with databse
+  // return validCategories.includes(category);
+  return true;
 }
 
 // Validate if a rating is between 1 and 5
@@ -140,9 +141,9 @@ function isValidRating(rating) {
 }
 
 // Validate if a price is not negative and greater than or equal to 10
-function isValidPrice(price) {
+function isValidPrice(priceRange) {
   const rangeRegex = /^\d+-\d+$/;
-  if(!rangeRegex.test(price)) {
+  if(!rangeRegex.test(priceRange)) {
     return false
   }
   const [minPrice, maxPrice] = priceRange.split('-').map(parseFloat);

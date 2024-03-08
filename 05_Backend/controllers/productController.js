@@ -52,15 +52,16 @@ async function addReview(req, res) {
         if (product.ratings) {
             const newRating = (product.ratings * product.reviews.length + review.ratings) / (product.reviews.length + 1);
             product.ratings = newRating;
-            await product.save();
         } else {
             product.ratings = review.ratings;
-            await product.save();
         }
 
-        const newReview = await review.save();
+        product.reviews.push(review._id)
 
-        return res.status(200).json({ review: newReview });
+        await product.save();
+        await review.save();
+
+        return res.status(200).json({ review });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
@@ -71,15 +72,14 @@ async function addReview(req, res) {
 // Search and filter products
 async function searchProducts(req, res) {
     // /search?search_query=abcd&category=efgh&...
-    const { search_query } = req.query;
-
-    // Handle filtering
     const {
+        search_query,
         category,
         ratings,
         price,
         sort
     } = req.query;
+
     // Perform the actual search logic 
     let results = await Product.find({})
 
@@ -97,23 +97,19 @@ async function searchProducts(req, res) {
         }
         if (category) {
             if (isValidCategory(category)) {
-                // results = filterResultsByCategory(results, category);
-                // product.category.toLowerCase() === categoryFilter.toLowerCase()
-                results = results.filter(product =>
-                    product.category.toLowerCase() === categoryFilter.toLowerCase()
-                );
+                results = filterResultsByCategory(results, category);
             }
             else {
-                res.status(400)
+                return res.status(400).json({ message: 'Does not exist' })
             }
         }
         if (ratings) {
             if (isValidRating(ratings)) {
                 results = filterResultsByRating(results, ratings);
                 // product.rating >= minRating && product.rating <= maxRating
-                results = results.filter(product =>
-                    product.ratings >= minRating && product.ratings <= maxRating
-                );
+                // results = results.filter(product =>
+                //     product.ratings >= minRating && product.ratings <= maxRating
+                // );
             } else {
                 return res.status(400).json({ message: "Rating should be between 1 and 5" });
             }
@@ -129,6 +125,9 @@ async function searchProducts(req, res) {
             }
         }
 
+        if (results.length === 0) {
+            return res.status(404).json({ message: "No products found" })
+        }
         // Handle sorting
         if (sort) {
             results = sortResults(results, sort);
@@ -181,12 +180,12 @@ function sortResults(results, sortField) {
 
 // Implement your logic to filter by category
 function filterResultsByCategory(results, category) {
-    return results.filter(product => product.category === category);
+    return results.filter(product => product.category.toLowerCase() == category.toLowerCase());
 }
 
 // Implement your logic to filter by rating
-function filterResultsByRating(results, rating) {
-    return results.filter(product => product.rating >= parseFloat(rating));
+function filterResultsByRating(results, ratings) {
+    return results.filter(product => product.ratings >= parseFloat(ratings));
 }
 
 // Implement your logic to filter by price range
