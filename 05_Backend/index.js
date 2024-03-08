@@ -9,7 +9,7 @@ const { connectToDatabase } = require("./database/db");
 const authRouter = require("./router/authRouter");
 const userRouter = require("./router/userRouter");
 const orderRouter = require("./router/orderRouter");
-// const productRouter = require("./router/productRouter");
+const productRouter = require("./router/productRouter");
 const sellerRouter = require("./router/sellerRouter");
 const checkoutRouter = require("./router/checkoutRouter");
 
