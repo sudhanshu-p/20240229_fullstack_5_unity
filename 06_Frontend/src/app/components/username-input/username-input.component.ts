@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+
+// Angular Material based imports
 import {
   FormControl,
   FormGroupDirective,
@@ -17,17 +19,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
-    const isSubmitted = form && form.submitted;
     return !!(
       control &&
       control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
+      control.touched
     );
   }
 }
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-username-input',
   standalone: true,
   imports: [
     FormsModule,
@@ -35,14 +36,22 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatInputModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  templateUrl: './username-input.component.html',
+  styleUrl: './username-input.component.css',
 })
-export class LoginComponent {
-  emailFormControl = new FormControl('', [
+export class UsernameInputComponent {
+  usernameFormControl = new FormControl('', [
     Validators.required,
-    Validators.email,
+    Validators.minLength(6),
+    Validators.maxLength(20),
   ]);
 
+  resetController() {
+    const value = this.usernameFormControl.value;
+    this.usernameFormControl.reset();
+    this.usernameFormControl.setValue(value);
+  }
+
+  isDirty: boolean = false;
   matcher = new MyErrorStateMatcher();
 }
