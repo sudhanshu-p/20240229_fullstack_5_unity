@@ -2,13 +2,25 @@
   <h1>Register</h1>
   <div class="left-footer-bottom" id="left-footer-bottom">
     <form class="password-frame">
+      <app-username-input></app-username-input>
       <app-email-input></app-email-input>
       <app-password-input></app-password-input>
-      <app-username-input></app-username-input>
       <button class="new-user-registration">
         <div class="new-user-type" id="newUserType"></div>
         <b class="sign-in">Create my Account</b>
       </button>
+      <div class="new-user-registration1">
+        <div class="existing-user-prompt">
+          <div class="register">
+            <div class="register-as-buyer">
+              <div class="dont-have-an">Already registered?</div>
+              <a class="register-as-buyer1" id="registerAsBuyer" href="/login">
+                Log in to existing account
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

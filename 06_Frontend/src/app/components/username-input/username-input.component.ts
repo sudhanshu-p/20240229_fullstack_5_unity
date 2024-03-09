@@ -19,6 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
+    // Converting possibly falsy / other values to boolean
     return !!(
       control &&
       control.invalid &&
@@ -41,17 +42,18 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UsernameInputComponent {
   usernameFormControl = new FormControl('', [
+    // These are the conditions to be met
     Validators.required,
     Validators.minLength(6),
     Validators.maxLength(20),
   ]);
 
+  /** Resetting helps not show the error when in focus */
   resetController() {
     const value = this.usernameFormControl.value;
     this.usernameFormControl.reset();
     this.usernameFormControl.setValue(value);
   }
 
-  isDirty: boolean = false;
   matcher = new MyErrorStateMatcher();
 }
