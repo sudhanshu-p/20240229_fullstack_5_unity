@@ -1,0 +1,56 @@
+<div class="table">
+    <div class="inner-table">
+        <h1>{{message}}</h1>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    
+            <ng-container matColumnDef="image">
+              <th mat-header-cell *matHeaderCellDef class="order-column"> Order No. </th>
+              <td mat-cell *matCellDef="let element"> 
+                <div class="image-with-text">
+                    <div class="image">
+                        <img src={{element.thumbnail}} alt="">
+                    </div>
+                    <div class="img-text">
+                        <div class="img-text-top">{{element.id}}</div>
+                        <div class="img-text-bottom">{{element.description.slice(0,20)+'...'}}</div>
+                    </div>
+                </div>
+            </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> price </th>
+              <td mat-cell *matCellDef="let element"> <div class="price">
+                ${{element.price}}
+              </div> </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="status" > 
+              <th mat-header-cell *matHeaderCellDef class="status-section"> Status </th>
+              <td mat-cell *matCellDef="let element" > <div class="status">
+                {{element.status}}
+              </div>
+
+                </td>
+        </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+              <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary">View Details </button></td>
+            </ng-container>
+
+            <!-- Cancel Order Column -->
+            <ng-container matColumnDef="cancel-order">
+              <th mat-header-cell *matHeaderCellDef> Cancel Order </th>
+              <td mat-cell *matCellDef="let element" class="cancel-order"><img src="../../../assets/delete.png" alt=""></td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+</div>
