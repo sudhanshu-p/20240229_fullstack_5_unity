@@ -1,0 +1,11 @@
+<div class="images">
+    <div *ngFor="let row of [1, 2, 3]">
+        <div class="product-grid">
+            @for (product of productData; track product) {
+            <div class="product">
+                <img class="product-image" loading="lazy" alt="" src="{{product}}" />
+            </div>
+            }
+        </div>
+    </div>
+</div>

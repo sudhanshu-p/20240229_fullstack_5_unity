@@ -1,17 +1,29 @@
 /* You can add global styles to this file, and also import other style files
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
-
-*{
-    margin: 0px;
-    padding: 0px;
-}
 :root {
     /* fonts */
     --font-sofia-pro: "Sofia Pro";
     --font-circular-std: "Circular Std";
     --font-abyssinica-sil: "Abyssinica SIL";
+    /* font sizes */
+    --font-size-base-7: 15.7px;
+    --font-size-mid: 17px;
+
+    /* Colors */
+    --color-black: #000;
+
+    /* Gaps */
+    --gap-10xl: 29px;
+    --gap-0: 0px;
+
+    /* Paddings */
+    --padding-lgi: 19px;
+    --padding-11xs: 2px;
+    --padding-10xs: 3px;
+    --padding-xl: 20px;
+    --padding-8xs: 5px;
+    --padding-9xs: 4px;
     --font-poppins: Poppins;
     --font-ubuntu: Ubuntu;
     --h4: Roboto;

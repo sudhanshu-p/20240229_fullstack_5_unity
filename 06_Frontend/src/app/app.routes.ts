@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { SearchpageComponent } from './searchpage/searchpage.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductComponent } from './pages/product/product.component';
 import { MyOrdersBuyersComponent } from './pages/my-orders-buyers/my-orders-buyers.component';
@@ -9,6 +11,7 @@ import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.compo
 import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 
 export const routes: Routes = [{ path: 'login', component: LoginComponent },
+    {path: '', component: HomepageComponent},
     { path: 'product', component: ProductComponent },
     { path: 'myorderbuyer', component: MyOrdersBuyersComponent},
     { path: 'myorderseller', component: MyOrdersSellerComponent},
@@ -22,4 +25,5 @@ export const routes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'checkout', component: CheckoutPageComponent },
     // Seller's Dashboard
     { path: 'seller/home', component: SellerDashboardComponent },
+    {path: 'search', component: SearchpageComponent}
 ];

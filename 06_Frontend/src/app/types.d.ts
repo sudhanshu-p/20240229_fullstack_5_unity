@@ -1,3 +1,8 @@
+interface Product {
+    category: string,
+    price: number,
+    imageUrl: string
+}  
 interface Address {
   firstName: string;
   lastName: string;

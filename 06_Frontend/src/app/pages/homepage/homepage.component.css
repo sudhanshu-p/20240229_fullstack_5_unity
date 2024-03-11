@@ -1,0 +1,47 @@
+/* Add this to your existing styles or adjust as needed */
+.group-j {
+    display: flex;
+    /* Adjust alignment as needed */
+}
+
+/* Example styling for the items, adjust as needed */
+.group-j img {
+    width: 40%;
+    /* Adjust the width as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.group-j .category-item,
+.group-j .product-item {
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+    /* Adjust margin as needed */
+}
+
+:root {
+    /* fonts */
+    --font-sofia-pro: "Sofia Pro";
+    --font-circular-std: "Circular Std";
+    --font-abyssinica-sil: "Abyssinica SIL";
+
+    /* font sizes */
+    --font-size-base-7: 15.7px;
+    --font-size-mid: 17px;
+
+    /* Colors */
+    --color-black: #000;
+
+    /* Gaps */
+    --gap-10xl: 29px;
+    --gap-0: 0px;
+
+    /* Paddings */
+    --padding-lgi: 19px;
+    --padding-11xs: 2px;
+    --padding-10xs: 3px;
+    --padding-xl: 20px;
+    --padding-8xs: 5px;
+    --padding-9xs: 4px;
+}

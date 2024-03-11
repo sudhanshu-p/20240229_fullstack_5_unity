@@ -1,0 +1,33 @@
+̃<!-- Main container with the class "homepage" -->
+
+<div class="searchpage">
+    <meta charset="utf-8" />
+    
+    <!-- Set the viewport for responsive design -->
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <!-- Link to external fonts from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Circular Std:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abyssinica SIL:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia Pro:wght@500;700&display=swap" />
+
+
+    <!-- Header section with class "frame-a" -->
+    <app-homepage-navbar></app-homepage-navbar>
+
+    <!-- Main content section with class "frame-h" -->
+    <main class="frame-h">
+
+        <!-- Section with class "frame-i" -->
+        <section class="frame-i">
+            <!-- Container with class "group-j" -->
+            <div class="group-j">
+
+                <app-homepage-sidebar [categoryData]="categoryData"></app-homepage-sidebar>
+
+                <app-searchpage-maincontent [productData]="productData"></app-searchpage-maincontent>
+            <!-- Container with class "product-texts" -->
+            </div>
+        </section>
+    </main>
+</div>

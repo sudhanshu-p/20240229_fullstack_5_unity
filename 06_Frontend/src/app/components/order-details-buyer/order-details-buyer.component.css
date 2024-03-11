@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #fff;
+    color: #191919;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%; /* Ensure it doesn't overflow on smaller screens */
+    padding: 20px;
+    margin: auto; /* This helps in centering if the flexbox fails for any reason */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex; /* Added to center the contents of container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+}
+
+.order-details, .order-status {
+    width: 100%; /* Ensure they take up the full width of the container */
+}
+
+.order-details h2, .order-status h2 {
+    margin-bottom: 10px;
+}
+
+.order-details table, .order-details th, .order-details td {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    padding: 10px;
+}
+
+.order-details th {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    color: #191919;
+}
+
+.order-details td {
+    text-align: right;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15px;
+    height: 2px;
+    width: 100%;
+    background-color: #ddd;
+    z-index: 1;
+}
+
+.status {
+    position: relative;
+    padding: 10px 0;
+    width: 20%;
+    text-align: center;
+    z-index: 2;
+}
+
+.status:not(:last-child) {
+    cursor: pointer;
+}
+
+.status::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #4caf50;
+    z-index: 3;
+}
+
+.active::before {
+    background-color: #4caf50;
+}
+
+.status p {
+    margin-top: 20px;
+    color: #333;
+}
+
+button {
+    display: block;
+    width: 150px;
+    padding: 10px;
+    margin: 20px auto;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+    color: #191919;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e0e0e0;
+}
