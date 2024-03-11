@@ -1,0 +1,36 @@
+.images {
+  display: flex;
+  flex-direction: column; /* Display rows in a column */
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-8xs) 0 0;
+  box-sizing: border-box;
+}
+
+.product-grid {
+  display: flex; /* Change to flex to display products in a row */
+  width: 100%;
+  gap: 2em;
+  padding: 2em;
+  flex-wrap: wrap; /* Allow products to wrap to the next row */
+  justify-content: flex-start;
+}
+
+.product {
+  flex: 1; /* Take up equal space in the row */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.product-image {
+  aspect-ratio: 518 / 760;
+  height: 24em;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}

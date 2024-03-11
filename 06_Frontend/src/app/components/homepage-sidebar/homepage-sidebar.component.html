@@ -1,0 +1,18 @@
+<!-- Explore section with class "explore" -->
+<div class="explore">
+  <!-- Heading element with class "explore1" -->
+  <h2 class="explore1">Explore</h2>
+
+  <!-- Container with class "search-container" -->
+  <div class="search-container">
+    <!-- Container with class "explore-frame" -->
+    <div class="explore-frame">
+      <!-- Image container with class "image-15-parent" -->
+      @for (category of categoryData; track category) {
+      <div class="category">
+        {{category}}
+      </div>
+      }
+    </div>
+  </div>
+</div>
