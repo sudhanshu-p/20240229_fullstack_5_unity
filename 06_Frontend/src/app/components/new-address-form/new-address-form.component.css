@@ -1,0 +1,19 @@
+.address-name-section {
+    width: 40rem;
+}
+
+.address-name-section>tr>td>mat-form-field {
+    width: 100%;
+}
+
+.street-address {
+    width: 40rem;
+}
+
+.address-other-details {
+    width: 40rem;
+}
+
+.address-other-details>tr>td>mat-form-field {
+    width: 13.33rem;
+}

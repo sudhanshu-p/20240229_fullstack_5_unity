@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 
 import {
   FormControl,
-  FormGroupDirective,
-  NgForm,
   Validators,
   FormsModule,
   ReactiveFormsModule,
@@ -11,21 +9,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-/** Angular Material based class to handle matching of error state */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    // const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      control.touched
-    );
-  }
-}
+import { MyErrorStateMatcher } from '../../classes'; 
 
 @Component({
   selector: 'app-password-input',

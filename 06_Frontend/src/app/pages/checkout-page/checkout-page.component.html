@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="address-selection">
+        <label id="select-address">Shipping Address</label>
+        <mat-radio-group aria-labelledby="select-address" class="address-radio-group" [(ngModel)]="selectedAddress">
+            <mat-radio-button class="address-radio-button" [value]="new_address">
+                <h1 class="address-radio-title">Add New Address</h1>
+            </mat-radio-button>
+            <app-new-address-form></app-new-address-form>
+            @for (address of allAddresses; track address) {
+            <mat-radio-button class="address-radio-button" [value]="address">
+                <h1 class="address-radio-title">{{address}}</h1>
+            </mat-radio-button>
+            }
+        </mat-radio-group>
+        <!-- <add-new-address></add-new-address> -->
+        <!-- <div class="saved-addresses" *ngfor="addresses"></div> -->
+    </div>
+
+    <div class="order-details-section">
+        <div class="order-detail">
+            <div class="place-order-section">
+                <button mat-raised-button color="primary">Place Order</button>
+                <h3>By placing an order, you agree to our company <a href="">Privacy Policy</a>
+                    and <a href="">Conditions of use</a></h3>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="order-detail">
+            <div class="order-summary-section">
+                <h1>Order Summary</h1>
+                <div class="order-row">
+                    <div class="left">Items(3)</div>
+                    <div class="right">56.73</div>
+                </div>
+                <div class="order-row">
+                    <div class="left">Shipping and Handling</div>
+                    <div class="right">5.50</div>
+                </div>
+                <div class="order-row">
+                    <div class="left">Before tax</div>
+                    <div class="right">62.23</div>
+                </div>
+                <div class="order-row">
+                    <div class="left">Tax Collected</div>
+                    <div class="right">8.21</div>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="order-detail">
+            <div class="order-total-section">
+                <div class="left">Order Total: </div>
+                <div class="right">$70.44</div>
+            </div>
+        </div>
+    </div>
+</div>
