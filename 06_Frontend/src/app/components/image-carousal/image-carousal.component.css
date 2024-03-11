@@ -1,0 +1,29 @@
+.image{
+    height: 600px;
+    width: 1500px;
+    border: 5px solid #c9b28a;
+}
+
+.carousel-container {
+    position: relative; /* Needed for absolute positioning of buttons */
+  }
+  
+  .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center buttons within image */
+    display: flex; /* Align buttons horizontally */
+  }
+  
+  .carousel-button {
+    /* Style your buttons here (e.g., background color, border, etc.) */
+    margin: 0 5px; /* Add spacing between buttons */
+    background-color: transparent;
+    border:none;
+    border: 1px solid black;
+  }
+  
