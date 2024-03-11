@@ -3,14 +3,16 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { OrderDetailsComponent } from '../../components/order-details/order-details.component';
 
 @Component({
-  selector: 'app-my-orders-buyers',
+  selector: 'app-my-orders-seller',
   standalone: true,
   imports: [NavbarComponent, OrderDetailsComponent],
-  templateUrl: './my-orders-buyers.component.html',
-  styleUrl: './my-orders-buyers.component.css'
+  templateUrl: './my-orders-seller.component.html',
+  styleUrl: './my-orders-seller.component.css'
 })
-export class MyOrdersBuyersComponent {
+export class MyOrdersSellerComponent {
   message1:string="Order in progress"
   message2:string="Order completed"
-
 }
+
+
+

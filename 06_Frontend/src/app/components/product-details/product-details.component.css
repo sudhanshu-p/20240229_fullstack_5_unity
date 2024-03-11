@@ -9,7 +9,7 @@
       justify-content: center;
     }
     .inner-table{
-        width: 60%;
+        width: 80%;
     }
 
     img{
@@ -65,12 +65,16 @@
         cursor: pointer;
     }
 
-    .greyscale:hover{
-        background-color: rgb(211, 211, 211);
+    .cancel-order img:hover{
+background-color: rgb(172, 171, 171);
     }
     
 
     h1{
         font-size: 2em;
         font-weight: 500;
+    }
+
+    .To-bold{
+        font-weight: bold;
     }

@@ -16,6 +16,7 @@ const ELEMENT_DATA= [
     "brand": "Apple",
     "category": "smartphones",
     "status": "In progress",
+    'ordersCompleted':400,
     "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
     "images": [
     "https://cdn.dummyjson.com/product-images/1/1.jpg",
@@ -36,6 +37,7 @@ const ELEMENT_DATA= [
     "brand": "Apple",
     "category": "smartphones",
     "status": "In progress",
+    'ordersCompleted':400,
     "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
     "images": [
     "https://cdn.dummyjson.com/product-images/1/1.jpg",
@@ -56,6 +58,7 @@ const ELEMENT_DATA= [
     "brand": "Apple",
     "category": "smartphones",
     "status": "In progress",
+    'ordersCompleted':400,
     "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
     "images": [
     "https://cdn.dummyjson.com/product-images/1/1.jpg",
@@ -76,6 +79,7 @@ const ELEMENT_DATA= [
     "brand": "Apple",
     "category": "smartphones",
     "status": "In progress",
+    'ordersCompleted':400,
     "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
     "images": [
     "https://cdn.dummyjson.com/product-images/1/1.jpg",
@@ -88,16 +92,14 @@ const ELEMENT_DATA= [
 ];
 
 @Component({
-  selector: 'app-order-details',
+  selector: 'app-product-details',
   standalone: true,
   imports: [MatTableModule,MatChipsModule,MatButtonModule],
-  templateUrl: './order-details.component.html',
-  styleUrl: './order-details.component.css'
+  templateUrl: './product-details.component.html',
+  styleUrl: './product-details.component.css'
 })
-
-export class OrderDetailsComponent {
+export class ProductDetailsComponent {
   @Input() message:string=""
-  displayedColumns: string[] = ['image', 'price', 'status', 'action', 'cancel-order'];
+  displayedColumns: string[] = ['image','title', 'price', 'stock', 'category','description','completed','action',];
   dataSource = ELEMENT_DATA;
-
 }
