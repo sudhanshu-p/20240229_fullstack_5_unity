@@ -1,5 +1,104 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root {
+    /* fonts */
+    --font-sofia-pro: "Sofia Pro";
+    --font-circular-std: "Circular Std";
+    --font-abyssinica-sil: "Abyssinica SIL";
+    --font-poppins: Poppins;
+    --font-ubuntu: Ubuntu;
+    --h4: Roboto;
+  
+    /* font sizes */
+    --font-size-base-7: 15.7px;
+    --font-size-11xl: 30px;
+    --font-size-lg: 18px;
+    --font-size-5xl: 24px;
+    --font-size-mid: 17px;
+    --font-size-sm: 14px;
+    --h4-size: 20px;
+    --font-size-xs: 12px;
+    --font-size-lgi: 19px;
+    --font-size-base: 16px;
+    --font-size-sm-7: 13.7px;
+    --font-size-3xl: 22px;
+    --font-size-smi: 13px;
+  
+    /* Colors */
+    --c1-j: #fff;
+    --color-black: #000;
+    --color-silver-100: #bcbec0;
+    --color-silver-200: #c0bab0;
+    --color-silver-300: rgba(196, 196, 196, 0.6);
+    --color-gainsboro: #d9d9d9;
+    --font-color: #28282a;
+    --c1-a: #151515;
+    --color-gray-200: rgba(255, 255, 255, 0.2);
+    --color-gray-100: rgba(0, 0, 0, 0.6);
+    --color-midnightblue-100: #0d308e;
+    --color-midnightblue: #02073f;
+    --color-orangered: #f25019;
+    --button-color: #113869;
+    --color-red: #ff0000;
+    --c1-d: #d1d1d1;
+    --color-steelblue: #456b9c;
+    --color-peru: #be8435;
+    --color-yellowgreen: #94db33;
+  
+    /* Gaps */
+    --gap-10xl: 29px;
+    --gap-0: 0px;
+    --gap-26xl: 45px;
+    --gap-4xl: 23px;
+    --gap-6xl: 25px;
+    --gap-xl: 20px;
+    --gap-6xs: 7px;
+    --gap-79xl: 98px;
+    --gap-sm: 14px;
+    --gap-7xs: 6px;
+    --gap-smi: 13px;
+    --gap-7xl: 26px;
+  
+    /* Paddings */
+    --padding-lgi: 19px;
+    --padding-11xs: 2px;
+    --padding-21xl: 40px;
+    --padding-6xs: 7px;
+    --padding-10xs: 3px;
+    --padding-xl: 20px;
+    --padding-base: 16px;
+    --padding-8xs: 5px;
+    --padding-3xs: 10px;
+    --padding-mid: 17px;
+    --padding-smi: 20px;
+    --padding-sm: 14px;
+    --padding-2xs: 11px;
+    --padding-9xs: 4px;
+    --padding-139xl: 158px;
+    --padding-7xs: 6px;
+    --padding-8xl: 20px;
+    --padding-12xs: 1px;
+    --padding-4xl: 23px;
+    --padding-mini: 15px;
+    --padding-4xs: 9px;
+    --padding-15xl: 34px;
+    --padding-7xl: 26px;
+  
+    /* Border radiuses */
+    --br-91xl: 110px;
+    --br-11xs: 2px;
+    --br-21xl: 40px;
+    --br-8xs: 5px;
+    --br-xs: 12px;
+  }
+  
 html,
 body {
     height: 100%;

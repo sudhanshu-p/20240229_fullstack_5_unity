@@ -1,0 +1,80 @@
+.table table {
+    width: 60%;
+  }
+
+  .table{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .inner-table{
+        width: 80%;
+    }
+
+    img{
+        width: 70px;
+        height: 70px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+    }
+    .image{
+        margin-top: 10px;
+        
+    }
+
+    .image-with-text{
+        display: flex;
+        
+    }
+
+    .img-text{
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    } 
+
+    .img-text-top{
+        font-weight: bold;
+    }
+
+    .price{
+        font-weight: bold;
+    }
+
+    .order-column{
+        width: 400px;
+    }
+
+    .status{
+        width: 80px;
+        padding: 3px 7px;
+        border-radius: 10px;
+        background-color: rgb(12, 155, 250)!important;
+        color: white;
+    }
+
+    .status-section{
+        width: 200px;
+    }
+
+    .cancel-order img{
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+    }
+
+    .cancel-order img:hover{
+background-color: rgb(172, 171, 171);
+    }
+    
+
+    h1{
+        font-size: 2em;
+        font-weight: 500;
+    }
+
+    .To-bold{
+        font-weight: bold;
+    }
