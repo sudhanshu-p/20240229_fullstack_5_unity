@@ -1,0 +1,118 @@
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 5rem;
+}
+
+/* Styles for the address selection section */
+
+#select-address {
+    font-size: 2rem;
+}
+
+.address-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+.address-radio-button {
+    display: flex;
+    align-items: center;
+}
+
+.address-radio-title {
+    margin: 0 !important;
+}
+
+/* Styles for the Order details section */
+
+.order-details-section {
+    background-color: #f0f0f0;
+    width: 30rem;
+    padding: 2rem;
+    border-radius: 7.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.order-detail {
+    width: 100%;
+}
+
+/* Customizing divider */
+mat-divider {
+    width: 100%;
+    border-width: 1px;
+    border-color: #cccccc;
+}
+
+/* First part of order details */
+.place-order-section>button {
+    width: 100%;
+}
+
+.place-order-section>h3 {
+    text-align: left;
+    color: gray;
+}
+
+.place-order-section>h3>a {
+    text-decoration: underline;
+    color: black;
+}
+
+/* Second part of order details */
+
+.order-summary-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    text-align: left;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: gray;
+}
+
+/* Order Total section */
+
+.order-total-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    padding: 2rem 0 1rem 0;
+}
+
+@media(max-width: 1200px) {
+    .main-content {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2rem 0;
+    }
+
+    .order-details-section {
+        flex-direction: column-reverse;
+    }
+
+    .place-order-section {
+        padding: 2rem 0 0 0;
+    }
+
+    .order-total-section {
+        padding: 0 0 2rem 0;
+    }
+}

@@ -1,18 +1,13 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input
-      type="email"
-      matInput
-      [formControl]="emailFormControl"
-      [errorStateMatcher]="matcher"
-      placeholder="Ex. pat@example.com"
-    />
-    <mat-hint>Errors appear instantly!</mat-hint>
-    <mat-error> 
-        {{ emailFormControl.hasError('required') ? 'Email is a required field' : 
-        
-    }}
-    </mat-error>
-  </mat-form-field>
-</form>
+<div class="body">
+  <div class="body-content">
+    <div class="left">
+      <div class="left-content">
+        <div class="left-header">Unity Ecommerce platform</div>
+        <app-login-form></app-login-form>
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../../assets/login-page-side-image.png" alt="" />
+    </div>
+  </div>
+</div>

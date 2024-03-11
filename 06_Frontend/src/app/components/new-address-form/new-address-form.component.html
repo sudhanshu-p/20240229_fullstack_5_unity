@@ -1,0 +1,50 @@
+<form class="new-address-form">
+    <table class="address-name-section">
+        <tr>
+            <td>
+                <mat-form-field>
+                    <mat-label>First name</mat-label>
+                    <input matInput [(ngModel)]="address.firstName">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input matInput [(ngModel)]="address.lastName">
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <mat-form-field class="street-address">
+            <mat-label>Street Address</mat-label>
+            <textarea matInput placeholder="Ex. 100 Main St" [(ngModel)]="address.streetAddress"></textarea>
+        </mat-form-field>
+    </p>
+
+    <table cellspacing="0" class="address-other-details">
+        <tr>
+            <td>
+                <mat-form-field>
+                    <mat-label>Apt Number</mat-label>
+                    <input matInput placeholder="Ex. San Francisco" [(ngModel)]="address.apartmentNumber">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <mat-label>State</mat-label>
+                    <input matInput placeholder="Ex. California" [(ngModel)]="address.state">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <mat-label>Zip</mat-label>
+                    <input matInput #postalCode maxlength="6" placeholder="Ex. 410006" value=""
+                        [(ngModel)]="address.zipcode">
+                    <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+</form>
