@@ -1,0 +1,10 @@
+.product-details{
+    margin-top: 50px;
+}
+
+.add-items{
+    display: flex;
+    justify-content: end;
+    width: 90%;
+    margin-top: 36px;
+}

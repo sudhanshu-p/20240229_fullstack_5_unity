@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+
 import {
   FormControl,
-  FormGroupDirective,
-  NgForm,
   Validators,
   FormsModule,
   ReactiveFormsModule,
@@ -10,24 +9,10 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-/** Angular Material based class to handle matching of error state */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { MyErrorStateMatcher } from '../../classes'; 
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-email-input',
   standalone: true,
   imports: [
     FormsModule,
@@ -35,14 +20,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatInputModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  templateUrl: './email-input.component.html',
+  styleUrl: './email-input.component.css',
 })
-export class LoginComponent {
+export class EmailInputComponent {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
+
+  resetController() {
+    const value = this.emailFormControl.value;
+    this.emailFormControl.reset();
+    this.emailFormControl.setValue(value);
+  }
 
   matcher = new MyErrorStateMatcher();
 }

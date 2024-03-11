@@ -1,0 +1,48 @@
+<app-seller-nav></app-seller-nav>
+
+<main>
+    <div class="title">
+        <h1>Welcome, Seller</h1>
+    </div>
+
+    <div class="flex-row">
+        <div class="date-inputs">
+            <mat-form-field>
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date">
+                    <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div>
+        <div class="monthly-data">
+            <div class="sales-data">
+                <p>Total sales</p>
+                <h2 class="green-text">{{totalSales}}</h2>
+            </div>
+            <div class="orders-data">
+                <p>Total Orders</p>
+                <h2 class="red-text">{{totalOrders}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="visualizations">
+        <div class="sales-growth">
+            <h1>Total Sales Growth</h1>
+            <div class="sales-growth-chart">
+                <app-seller-chart></app-seller-chart>
+            </div>
+        </div>
+        <div class="orders-growth">
+            <h1>Total Order Growth</h1>
+            <div class="orders-growth-chart">
+                <app-seller-chart></app-seller-chart>
+            </div>
+        </div>
+    </div>
+
+</main>

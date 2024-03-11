@@ -1,0 +1,14 @@
+<div class="star-rating">
+    @for (star of stars; track $index) {
+        
+        <i class="fa fa-star img" ><img src="../../../assets/star.png" alt=""></i>
+    }
+
+    @if (rating % 1 !== 0) {
+        <i class="img">
+            <img src="../../../assets/rating.png" alt="">
+        </i>
+    }
+
+    <div class="rating-text">{{rating}} stars rating <b>|</b> see {{ReviewNum}} Reviews </div>
+</div>

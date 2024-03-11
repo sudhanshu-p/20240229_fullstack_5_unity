@@ -1,0 +1,15 @@
+<div class="carousel-container">
+        <img *ngIf="images.length > 0"
+             [src]="images[currentIndex]"
+             alt="" class="image">
+      
+        <div class="button-container">
+          <button class="carousel-button prev" (click)="prevImage()">🡰 Previous </button>
+          <button class="carousel-button next" (click)="nextImage()">Next 🡲</button>
+        </div>
+
+        
+    
+    </div>
+
+  

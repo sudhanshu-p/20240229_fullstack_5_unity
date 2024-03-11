@@ -1,0 +1,18 @@
+<div class="body">
+  <div class="body-content">
+    <div class="left">
+      <div class="left-content">
+        <div class="left-header">Unity Ecommerce platform</div>
+        <app-register-form [userRole]="userRole"></app-register-form>
+      </div>
+    </div>
+    <div class="right">
+      @if (userRole === 'user') {
+        <img src="../../../assets/login-page-side-image.png" alt="" />
+      }
+      @else {
+        <img src="assets/register-seller-side-image.png" alt="" />
+      }
+    </div>
+  </div>
+</div>
