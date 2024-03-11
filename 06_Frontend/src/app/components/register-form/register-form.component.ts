@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EmailInputComponent } from '../../components/email-input/email-input.component';
 import { PasswordInputComponent } from '../../components/password-input/password-input.component';
 import { UsernameInputComponent } from '../../components/username-input/username-input.component';
@@ -16,5 +16,6 @@ import { UsernameInputComponent } from '../../components/username-input/username
   styleUrl: './register-form.component.css'
 })
 export class RegisterFormComponent {
-
+  /** Enum for input */
+  @Input() userRole: 'user' | 'seller' = 'user'
 }
