@@ -1,6 +1,8 @@
-/* You can add global styles to this file, and also import other style files
+html,
+body {
+    height: 100%;
+}
 
-html, body { height: 100%; }
 :root {
     /* fonts */
     --font-sofia-pro: "Sofia Pro";
@@ -27,7 +29,7 @@ html, body { height: 100%; }
     --font-poppins: Poppins;
     --font-ubuntu: Ubuntu;
     --h4: Roboto;
-  
+
     /* font sizes */
     --font-size-base-7: 15.7px;
     --font-size-11xl: 30px;
@@ -42,7 +44,7 @@ html, body { height: 100%; }
     --font-size-sm-7: 13.7px;
     --font-size-3xl: 22px;
     --font-size-smi: 13px;
-  
+
     /* Colors */
     --c1-j: #fff;
     --color-black: #000;
@@ -63,7 +65,7 @@ html, body { height: 100%; }
     --color-steelblue: #456b9c;
     --color-peru: #be8435;
     --color-yellowgreen: #94db33;
-  
+
     /* Gaps */
     --gap-10xl: 29px;
     --gap-0: 0px;
@@ -77,7 +79,7 @@ html, body { height: 100%; }
     --gap-7xs: 6px;
     --gap-smi: 13px;
     --gap-7xl: 26px;
-  
+
     /* Paddings */
     --padding-lgi: 19px;
     --padding-11xs: 2px;
@@ -102,15 +104,15 @@ html, body { height: 100%; }
     --padding-4xs: 9px;
     --padding-15xl: 34px;
     --padding-7xl: 26px;
-  
+
     /* Border radiuses */
     --br-91xl: 110px;
     --br-11xs: 2px;
     --br-21xl: 40px;
     --br-8xs: 5px;
     --br-xs: 12px;
-  }
-  
+}
+
 html,
 body {
     height: 100%;

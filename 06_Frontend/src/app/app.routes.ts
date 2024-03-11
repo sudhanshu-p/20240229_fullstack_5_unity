@@ -14,7 +14,6 @@ import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashbo
 import { OrderDetailsBuyerComponent } from './components/order-details-buyer/order-details-buyer.component';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
     { path: '', component: HomepageComponent },
     { path: 'product', component: ProductComponent },
     { path: 'myorderbuyer', component: MyOrdersBuyersComponent },
