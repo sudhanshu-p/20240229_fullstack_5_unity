@@ -13,13 +13,13 @@ router.use(express.json());
 
 // Controller setup
 const { searchProducts, addReview, getTrendingProductsController } = require('../controllers/productController');
-const {validateReviewLength, checkAbusiveWords} = require("../dependencies/validators/Reviews")
-const {verifyJwt, getUserMiddleware} = require("../dependencies/jwtHelpers")
+const { validateReviewLength, checkAbusiveWords } = require("../dependencies/validators/Reviews")
+const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers")
 
 // Route for searching and filtering products
 /**
  * @swagger
- * /search:
+ * /product/search:
  *   get:
  *     summary: Search and filter products
  *     description: Retrieve products based on search query, category, ratings, price, and sorting.
@@ -114,6 +114,11 @@ const {verifyJwt, getUserMiddleware} = require("../dependencies/jwtHelpers")
  *             type: string
  *         ratings:
  *           type: number
+ * securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 router.get('/search', searchProducts);
@@ -121,8 +126,11 @@ router.get('/search', searchProducts);
 // Route for adding a review
 /**
  * @swagger
- * /products/{id}/review:
+ * /product/{id}/review:
  *   post:
+ *     get:
+ *       security:
+ *         - bearer: []
  *     summary: Add a review to a product
  *     description: Add a review to a specific product identified by ID.
  *     tags:
@@ -193,6 +201,11 @@ router.get('/search', searchProducts);
  *           type: string
  *         userId:
  *           type: string
+ * securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 router.post('/:id/review', verifyJwt, getUserMiddleware, validateReviewLength, checkAbusiveWords, addReview);
@@ -200,7 +213,7 @@ router.post('/:id/review', verifyJwt, getUserMiddleware, validateReviewLength, c
 // Route to get trending products
 /**
  * @swagger
- * /:
+ * /product/getTrendingProducts:
  *   get:
  *     summary: Get trending products
  *     description: Retrieve trending products based on the user's role.
@@ -230,9 +243,14 @@ router.post('/:id/review', verifyJwt, getUserMiddleware, validateReviewLength, c
  *           application/json:
  *             example:
  *               message: "Internal server error."
+ * securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
-router.get('/', getTrendingProductsController);
+router.get('/getTrendingProducts', getTrendingProductsController);
 
 
 module.exports = router;

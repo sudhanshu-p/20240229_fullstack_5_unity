@@ -13,7 +13,7 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
 // Routes
 /**
  * @swagger
- * /:
+ * /checkout/checkout:
  *   post:
  *     summary: Place an order (Checkout)
  *     description: Place an order for a product with a specified quantity and delivery address.
@@ -90,9 +90,14 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *           type: string
  *         totalOrderValue:
  *           type: number
+ * securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
-router.post("/", verifyJwt, getUserMiddleware, checkoutController.checkout);
+router.post("/checkout", verifyJwt, getUserMiddleware, checkoutController.checkout);
 
 // Exporting the router
 module.exports = router;

@@ -42,7 +42,7 @@ async function addReview(req, res) {
 
 
     try {
-        const product = await Product.findOne({ _id: productId });
+        const product = await Product.findById({ _id: productId });
 
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
