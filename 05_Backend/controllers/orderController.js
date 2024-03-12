@@ -3,19 +3,50 @@ const Order = require("../models/Order");
 const Product = require("../models/Product");
 const { orderStatusValidator } = require("../dependencies/validators/Order");
 
+
+
+
+
 /**
- * @swagger
  * Controller for updating order status.
  * 
- * @param {Object} req - The request object.
- * @param {Object} req.params - The request parameters.
- * @param {string} req.params.id - The ID of the order to be updated.
- * @param {Object} req.body - The request body.
- * @param {string} req.body.status - The new status of the order.
- * @param {Object} req.user - The user object extracted from the request.
- * @param {string} req.user._id - The ID of the authenticated user.
- * @param {Object} res - The response object.
- * @returns {Object} The response containing the updated order.
+ * @swagger
+ * /api/orders/{id}/status:
+ *   put:
+ *     summary: Update order status.
+ *     tags:
+ *       - Orders
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the order to update status.
+ *         schema:
+ *           type: string
+ *       - in: body
+ *         name: status
+ *         description: New status for the order.
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             status:
+ *               type: string
+ *     responses:
+ *       '200':
+ *         description: Updated order status.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+ *       '400':
+ *         description: Invalid input.
+ *       '401':
+ *         description: Unauthorized.
+ *       '404':
+ *         description: Order not found.
+ *       '500':
+ *         description: Internal server error.
  */
 async function updateStatus(req, res) {
   // Get the order id and status from the request
@@ -53,17 +84,41 @@ async function updateStatus(req, res) {
 
 
 
+
 /**
- * @swagger
  * Controller for getting order details.
  * 
- * @param {Object} req - The request object.
- * @param {Object} req.params - The request parameters.
- * @param {string} req.params.id - The ID of the order to be retrieved.
- * @param {Object} req.user - The user object extracted from the request.
- * @param {string} req.user._id - The ID of the authenticated user.
- * @param {Object} res - The response object.
- * @returns {Object} The response containing the order details and associated product.
+ * @swagger
+ * /api/orders/{id}:
+ *   get:
+ *     summary: Get order details.
+ *     tags:
+ *       - Orders
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the order to retrieve details.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Order details along with associated product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 order:
+ *                   $ref: '#/components/schemas/Order'
+ *                 product:
+ *                   $ref: '#/components/schemas/Product'
+ *       '401':
+ *         description: Unauthorized for this Order.
+ *       '404':
+ *         description: Order not found.
+ *       '500':
+ *         description: Internal server error.
  */
 async function getOrderDetails(req, res) {
   // Get the order id from the request
@@ -102,15 +157,29 @@ async function getOrderDetails(req, res) {
 
 
 /**
- * @swagger
  * Controller for getting orders.
  * 
- * @param {Object} req - The request object.
- * @param {Object} req.user - The user object extracted from the request.
- * @param {string} req.user._id - The ID of the authenticated user.
- * @param {string} req.user.role - The role of the authenticated user.
- * @param {Object} res - The response object.
- * @returns {Object} The response containing the list of orders.
+ * @swagger
+ * /api/orders:
+ *   get:
+ *     summary: Get orders.
+ *     tags:
+ *       - Orders
+ *     responses:
+ *       '200':
+ *         description: List of orders.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Order'
+ *       '400':
+ *         description: Invalid user role.
+ *       '404':
+ *         description: No orders found.
+ *       '500':
+ *         description: Internal server error.
  */
 async function getOrders(req, res) {
   // Get the user id from the request

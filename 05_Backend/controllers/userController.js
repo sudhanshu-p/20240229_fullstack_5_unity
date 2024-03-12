@@ -61,27 +61,30 @@ async function getUserAddresses(req, res) {
 
 
 
-// @swagger
-// /api/user/address:
-//   post:
-//     summary: Create a new address.
-//     tags: [User Addresses]
-//     requestBody:
-//       required: true
-//       content:
-//         application/json:
-//           schema:
-//             $ref: '#/components/schemas/Address'
-//     responses:
-//       '201':
-//         description: Address created successfully.
-//         content:
-//           application/json:
-//             schema:
-//               $ref: '#/components/schemas/Address'
-//       '400':
-//         description: Missing required address fields with valid address details.
 
+
+/**
+* @swagger
+* /api/user/address:
+*   post:
+*     summary: Create a new address.
+*     tags: [User Addresses]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             $ref: '#/components/schemas/Address'
+*     responses:
+*       '201':
+*         description: Address created successfully.
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Address'
+*       '400':
+*         description: Missing required address fields with valid address details.
+*/
 async function createAddress(req, res) {
   try {
     // Extract address data from the request body
@@ -115,18 +118,46 @@ async function createAddress(req, res) {
 }
 
 
+
+
+
 /**
  * @swagger
- * Controller for updating an existing address of the user.
- *
- * @param {Object} req - The request object.
- * @param {Object} req.query - The query parameters.
- * @param {string} req.query.id - The ID of the address to be updated.
- * @param {Object} req.body - The request body containing the updated address details.
- * @param {Object} req.user - The user object extracted from the request.
- * @param {string} req.user._id - The ID of the authenticated user.
- * @param {Object} res - The response object.
- * @returns {Object} The response containing the updated address.
+ * /api/user/address/{id}:
+ *   put:
+ *     summary: Update an existing address.
+ *     tags: [User Addresses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the address to update.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               // Add properties based on your Address schema
+ *     responses:
+ *       '200':
+ *         description: Address updated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 address:
+ *                   $ref: '#/components/schemas/Address'
+ *       '400':
+ *         description: Missing required address fields or invalid ID.
+ *       '404':
+ *         description: Address not found or unauthorized update.
+ *       '500':
+ *         description: Internal server error.
  */
 async function updateAddress(req, res) {
   try {
@@ -169,14 +200,24 @@ async function updateAddress(req, res) {
 
 /**
  * @swagger
- * Controller for deleting an address of the user.
- *
- * @param {Object} req - The request object.
- * @param {Object} req.query - The query parameters.
- * @param {string} req.query.id - The ID of the address to be deleted.
- * @param {Object} req.user - The user object extracted from the request.
- * @param {Object} res - The response object.
- * @returns {Object} The response containing the confirmation message.
+ * /api/user/address/{id}:
+ *   delete:
+ *     summary: Delete an address.
+ *     tags: [User Addresses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the address to delete.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Address deleted successfully.
+ *       '400':
+ *         description: Missing address ID.
+ *       '404':
+ *         description: Address not found or unauthorized deletion.
  */
 async function deleteAddress(req, res) {
   try {
@@ -213,14 +254,51 @@ async function deleteAddress(req, res) {
 
 
 
+
+
 /**
  * @swagger
- * Controller for getting user details along with all addresses.
- *
- * @param {Object} req - The request object.
- * @param {Object} req.user - The user object extracted from the request.
- * @param {Object} res - The response object.
- * @returns {Object} The response containing the user details and addresses.
+ * /api/user/details:
+ *   get:
+ *     summary: Get user details including addresses.
+ *     tags: [User Details]
+ *     responses:
+ *       '200':
+ *         description: User details retrieved successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 username:
+ *                   type: string
+ *                   description: Username of the user.
+ *                 email:
+ *                   type: string
+ *                   description: Email of the user.
+ *                 addresses:
+ *                   type: array
+ *                   description: Array of user addresses.
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       firstName:
+ *                         type: string
+ *                         description: First name in the address.
+ *                       lastName:
+ *                         type: string
+ *                         description: Last name in the address.
+ *                       streetAddress:
+ *                         type: string
+ *                         description: Street address.
+ *                       apartmentNumber:
+ *                         type: string
+ *                         description: Apartment number.
+ *                       zipCode:
+ *                         type: string
+ *                         description: Zip code.
+ *       '500':
+ *         description: Internal server error.
  */
 async function getUserDetails(req,res){
     try{
@@ -258,15 +336,41 @@ async function getUserDetails(req,res){
 
 /**
  * @swagger
- * Controller for updating user profile details.
- *
- * @param {Object} req - The request object.
- * @param {Object} req.body - The request body containing the updated user details.
- * @param {string} req.body.username - The new username.
- * @param {string} req.body.email - The new email.
- * @param {Object} req.user - The user object extracted from the request.
- * @param {Object} res - The response object.
- * @returns {Object} The response containing the updated user details.
+ * /api/user/update:
+ *   put:
+ *     summary: Update user details.
+ *     tags: [User Details]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: New username for the user.
+ *               email:
+ *                 type: string
+ *                 description: New email for the user.
+ *     responses:
+ *       '200':
+ *         description: User details updated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 userName:
+ *                   type: string
+ *                   description: Updated username.
+ *                 email:
+ *                   type: string
+ *                   description: Updated email.
+ *       '402':
+ *         description: Invalid username or email.
+ *       '500':
+ *         description: Internal server error.
  */
 async function updateUserDetails(req,res){
     try{
