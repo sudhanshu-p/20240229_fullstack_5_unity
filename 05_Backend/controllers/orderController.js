@@ -3,7 +3,20 @@ const Order = require("../models/Order");
 const Product = require("../models/Product");
 const { orderStatusValidator } = require("../dependencies/validators/Order");
 
-/** Controller for updating order status */
+/**
+ * @swagger
+ * Controller for updating order status.
+ * 
+ * @param {Object} req - The request object.
+ * @param {Object} req.params - The request parameters.
+ * @param {string} req.params.id - The ID of the order to be updated.
+ * @param {Object} req.body - The request body.
+ * @param {string} req.body.status - The new status of the order.
+ * @param {Object} req.user - The user object extracted from the request.
+ * @param {string} req.user._id - The ID of the authenticated user.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the updated order.
+ */
 async function updateStatus(req, res) {
   // Get the order id and status from the request
   const { id } = req.params;
@@ -37,7 +50,21 @@ async function updateStatus(req, res) {
   }
 }
 
-/** Controller for getting order details */
+
+
+
+/**
+ * @swagger
+ * Controller for getting order details.
+ * 
+ * @param {Object} req - The request object.
+ * @param {Object} req.params - The request parameters.
+ * @param {string} req.params.id - The ID of the order to be retrieved.
+ * @param {Object} req.user - The user object extracted from the request.
+ * @param {string} req.user._id - The ID of the authenticated user.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the order details and associated product.
+ */
 async function getOrderDetails(req, res) {
   // Get the order id from the request
   const { id } = req.params;
@@ -70,7 +97,21 @@ async function getOrderDetails(req, res) {
   }
 }
 
-/** Controller for getting orders */
+
+
+
+
+/**
+ * @swagger
+ * Controller for getting orders.
+ * 
+ * @param {Object} req - The request object.
+ * @param {Object} req.user - The user object extracted from the request.
+ * @param {string} req.user._id - The ID of the authenticated user.
+ * @param {string} req.user.role - The role of the authenticated user.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the list of orders.
+ */
 async function getOrders(req, res) {
   // Get the user id from the request
   const { id } = req.user;

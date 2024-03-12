@@ -13,7 +13,38 @@ const {
   roleValidator,
 } = require("../dependencies/validators/User");
 
-// Register a new user
+
+
+
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Register a new user
+ *     description: Create a new user account with the provided username, email, password, and role.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *     responses:
+ *       '201':
+ *         description: User created successfully
+ *       '400':
+ *         description: Invalid input or user already exists
+ *       '500':
+ *         description: Internal server error
+ */
 async function register(req, res) {
   const { username, email, password, role } = req.body;
 
@@ -46,7 +77,38 @@ async function register(req, res) {
   }
 }
 
-// Login a user
+
+
+
+
+
+
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Login a user
+ *     description: Authenticate the user with the provided email and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: Successful login
+ *       '400':
+ *         description: Invalid input or invalid email/password
+ *       '500':
+ *         description: Internal server error
+ */
 async function login(req, res) {
   const { email, password } = req.body;
 

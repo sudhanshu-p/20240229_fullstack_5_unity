@@ -16,7 +16,25 @@ const{
 }= require("../dependencies/validators/User");
 const { request } = require("express");
 
-//Get all the address of user
+
+/**
+* @swagger
+* /api/user/addresses:
+*   get:
+*     summary: Get all the addresses of a user.
+*     tags: [User Addresses]
+*     responses:
+*       '200':
+*         description: A list of addresses belonging to the user.
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 $ref: '#/components/schemas/Address'
+*       '404':
+*         description: No addresses found.
+*/
 async function getUserAddresses(req, res) {
   try {
     // get user
@@ -40,6 +58,29 @@ async function getUserAddresses(req, res) {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+
+
+
+// @swagger
+// /api/user/address:
+//   post:
+//     summary: Create a new address.
+//     tags: [User Addresses]
+//     requestBody:
+//       required: true
+//       content:
+//         application/json:
+//           schema:
+//             $ref: '#/components/schemas/Address'
+//     responses:
+//       '201':
+//         description: Address created successfully.
+//         content:
+//           application/json:
+//             schema:
+//               $ref: '#/components/schemas/Address'
+//       '400':
+//         description: Missing required address fields with valid address details.
 
 async function createAddress(req, res) {
   try {
@@ -73,6 +114,20 @@ async function createAddress(req, res) {
   }
 }
 
+
+/**
+ * @swagger
+ * Controller for updating an existing address of the user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.query - The query parameters.
+ * @param {string} req.query.id - The ID of the address to be updated.
+ * @param {Object} req.body - The request body containing the updated address details.
+ * @param {Object} req.user - The user object extracted from the request.
+ * @param {string} req.user._id - The ID of the authenticated user.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the updated address.
+ */
 async function updateAddress(req, res) {
   try {
     const addressId = req.query.id; // Assuming address ID comes from the route path
@@ -110,6 +165,19 @@ async function updateAddress(req, res) {
   }
 }
 
+
+
+/**
+ * @swagger
+ * Controller for deleting an address of the user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.query - The query parameters.
+ * @param {string} req.query.id - The ID of the address to be deleted.
+ * @param {Object} req.user - The user object extracted from the request.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the confirmation message.
+ */
 async function deleteAddress(req, res) {
   try {
     // get user and address Id to delete
@@ -143,7 +211,17 @@ async function deleteAddress(req, res) {
   }
 }
 
-//get necessary user Details with all the addresses
+
+
+/**
+ * @swagger
+ * Controller for getting user details along with all addresses.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.user - The user object extracted from the request.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the user details and addresses.
+ */
 async function getUserDetails(req,res){
     try{
         //get the user details
@@ -176,7 +254,20 @@ async function getUserDetails(req,res){
     }
 }
 
-// update user profile info
+
+
+/**
+ * @swagger
+ * Controller for updating user profile details.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.body - The request body containing the updated user details.
+ * @param {string} req.body.username - The new username.
+ * @param {string} req.body.email - The new email.
+ * @param {Object} req.user - The user object extracted from the request.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the updated user details.
+ */
 async function updateUserDetails(req,res){
     try{
     // check if the username and email is valid or not
