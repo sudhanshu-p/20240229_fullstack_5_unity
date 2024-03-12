@@ -70,7 +70,7 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *     summary: Get all addresses of the logged-in user
  *     description: Retrieve all addresses associated with the currently logged-in user.
  *     tags:
- *       - Users
+ *       - User
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -271,8 +271,6 @@ router.put("/address", verifyJwt, getUserMiddleware, userController.updateAddres
 router.delete("/address", verifyJwt, getUserMiddleware, userController.deleteAddress);
 
 // User routes
-
-
 /**
  * @swagger
  * /getUserDetails:

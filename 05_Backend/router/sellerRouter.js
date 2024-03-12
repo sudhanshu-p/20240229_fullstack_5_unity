@@ -7,7 +7,7 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
 
 /**
  * @swagger
- * /createProduct:
+ * /seller/createProduct:
  *   post:
  *     summary: Create a new product
  *     description: Create a new product or add products in the e-commerce system.
@@ -29,11 +29,8 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *                   description:
  *                     type: string
  *                     description: Description of the product.
- *                   trending:
- *                     type: boolean
- *                     description: Indicates if the product is trending.
  *                   stock:
- *                     type: number
+ *                     type: integer
  *                     description: Available stock.
  *                   thumbnailUrl:
  *                     type: string
@@ -43,9 +40,6 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *                     items:
  *                       type: string
  *                     description: Array of URLs for product images.
- *                   seller_id:
- *                     type: string
- *                     description: ID of the seller.
  *                   category:
  *                     type: string
  *                     description: Product category.
@@ -55,35 +49,24 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *                   discountPrice:
  *                     type: number
  *                     description: The discounted price of the product.
- *                   reviews:
- *                     type: string
- *                     description: ID of the review associated with the product.
- *                   ratings:
- *                     type: array
- *                     description: The product's rating.
- *                   
  *     responses:
- *       '200':
+ *       '201':
  *         description: Successfully created product
  *         content:
  *           application/json:
  *             example:
  *               product:
- *                 title: "Smartphone X"
- *                 description: "A powerful and feature-rich smartphone."
- *                 trending: true
- *                 stock: 100
+ *                 title: "cloths"
+ *                 description: "Daily wear"
+ *                 stock: 40
  *                 thumbnailUrl: "https://example.com/thumbnail.jpg"
  *                 images:
  *                   - "https://example.com/image1.jpg"
  *                   - "https://example.com/image2.jpg"
- *                 seller_id: "123456789012345678901234"
- *                 category: "Electronics"
- *                 price: 499.99
- *                 discountPrice: 399.99
- *                 reviews: []
- *                 ratings: 4.5
- *               createdAt: 2024-03-15T12:00:00Z
+ *                 category: "Clothing"
+ *                 price: 4000
+ *                 discountPrice: 50
+ *               createdAt: "2024-03-12T12:00:00Z"
  *       '400':
  *         description: Invalid input. Check the request body for errors.
  *         content:
@@ -96,18 +79,23 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *           application/json:
  *             example:
  *               message: "Internal server error"
+ *  
+ *     securityDefinitions:
+ *         BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 
 
-
-router.post("/product", verifyJwt, getUserMiddleware, sellerController.createProduct);
+router.post("/createProduct", verifyJwt, getUserMiddleware, sellerController.createProduct);
 
 
 
 /**
  * @swagger
- * /updateProduct:
+ * /seller/updateProduct:
  *   put:
  *     summary: Update a product
  *     description: Update an existing product in the e-commerce system.
@@ -191,13 +179,19 @@ router.post("/product", verifyJwt, getUserMiddleware, sellerController.createPro
  *           application/json:
  *             example:
  *               message: "Internal server error"
+
+ *     securityDefinitions:
+ *         BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
-router.put("/product", verifyJwt, getUserMiddleware, sellerController.updateProduct);
+router.put("/updateProduct", verifyJwt, getUserMiddleware, sellerController.updateProduct);
 
 /**
  * @swagger
- * /deleteProduct:
+ * /seller/deleteProduct:
  *   delete:
  *     summary: Delete a product
  *     description: Delete an existing product from the e-commerce system.
@@ -241,7 +235,8 @@ router.put("/product", verifyJwt, getUserMiddleware, sellerController.updateProd
  */
 
 
-router.delete("/product", verifyJwt, getUserMiddleware, sellerController.deleteProduct);
+router.delete("/deleteProduct", verifyJwt, getUserMiddleware, sellerController.deleteProduct);
+
 
 router.post("/dashboard", verifyJwt, getUserMiddleware, sellerController.getDashboard);
 
