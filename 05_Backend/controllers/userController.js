@@ -65,8 +65,10 @@ async function getUserAddresses(req, res) {
 
 /**
 * @swagger
-* /api/user/address:
+* /user/address:
 *   post:
+*     security:
+*       - bearerAuth: []
 *     summary: Create a new address.
 *     tags: [User Addresses]
 *     requestBody:
