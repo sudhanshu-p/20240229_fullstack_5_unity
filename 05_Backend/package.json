@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-swagger": "swagger-jsdoc -o swagger.json ./controllers/authController.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +19,8 @@
     "mongodb": "^6.4.0",
     "mongoose": "^8.2.1",
     "swagger-jsdoc": "^5.0.1",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "swagger-ui-dist": "^5.11.10"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

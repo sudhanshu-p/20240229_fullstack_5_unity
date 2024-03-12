@@ -13,8 +13,39 @@ const {
   roleValidator,
 } = require("../dependencies/validators/User");
 
-// Register a new user
-async function register(req, res) {
+
+
+
+/**
+ * @swagger
+ * /auth/signup:
+ *   post:
+ *     summary: Register a new user
+ *     description: Create a new user account with the provided username, email, password, and role.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *     responses:
+ *       '201':
+ *         description: User created successfully
+ *       '400':
+ *         description: Invalid input or user already exists
+ *       '500':
+ *         description: Internal server error
+ */
+async function signup(req, res) {
   const { username, email, password, role } = req.body;
 
   // Validate the user input
@@ -46,8 +77,39 @@ async function register(req, res) {
   }
 }
 
-// Login a user
-async function login(req, res) {
+
+
+
+
+
+
+
+/**
+ * @swagger
+ * /auth/signin:
+ *   post:
+ *     summary: Login a user
+ *     description: Authenticate the user with the provided email and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: Successful login
+ *       '400':
+ *         description: Invalid input or invalid email/password
+ *       '500':
+ *         description: Internal server error
+ */
+async function signin(req, res) {
   const { email, password } = req.body;
 
   // Validate the user input
@@ -69,7 +131,7 @@ async function login(req, res) {
     }
 
     // Create and assign a token
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '10h' });
 
     // Send the token in the response Body
     // Once the frontend and backend are connected,
@@ -80,4 +142,4 @@ async function login(req, res) {
   }
 }
 
-module.exports = { register, login };
+module.exports = { signup, signin };

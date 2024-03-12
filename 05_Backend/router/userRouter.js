@@ -110,7 +110,7 @@ router.get("/address", verifyJwt, getUserMiddleware, userController.getUserAddre
 
 /**
  * @swagger
- * /createAddress:
+ * /user/address:
  *   post:
  *     summary: Create a new user address
  *     description: Create a new address for the logged-in user.
