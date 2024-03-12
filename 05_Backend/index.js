@@ -18,7 +18,6 @@ const app = express();
 app.use(bodyParser.json());
 
 
-
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 // Routes
@@ -48,9 +47,6 @@ async function startServerAndDatabase() {
 }
 
 startServerAndDatabase();
-
-
-
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0',
@@ -80,10 +76,6 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
-
-
-
-
 console.log('Swagger UI setup complete');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

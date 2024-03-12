@@ -122,8 +122,7 @@ router.get("/address", verifyJwt, getUserMiddleware, userController.getUserAddre
  *       required: true
  *       content:
  *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/AddressInput'  # Correct path to the AddressInput schema
+ *             # Correct path to the AddressInput schema
  *     responses:
  *       '201':
  *         description: Successfully created user address
