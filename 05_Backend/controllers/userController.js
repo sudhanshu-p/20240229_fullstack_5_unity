@@ -16,7 +16,25 @@ const{
 }= require("../dependencies/validators/User");
 const { request } = require("express");
 
-//Get all the address of user
+
+/**
+* @swagger
+* /api/user/addresses:
+*   get:
+*     summary: Get all the addresses of a user.
+*     tags: [User Addresses]
+*     responses:
+*       '200':
+*         description: A list of addresses belonging to the user.
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 $ref: '#/components/schemas/Address'
+*       '404':
+*         description: No addresses found.
+*/
 async function getUserAddresses(req, res) {
   try {
     // get user
@@ -41,6 +59,34 @@ async function getUserAddresses(req, res) {
   }
 }
 
+
+
+
+
+/**
+* @swagger
+* /user/address:
+*   post:
+*     security:
+*       - bearerAuth: []
+*     summary: Create a new address.
+*     tags: [User Addresses]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             $ref: '#/components/schemas/Address'
+*     responses:
+*       '201':
+*         description: Address created successfully.
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Address'
+*       '400':
+*         description: Missing required address fields with valid address details.
+*/
 async function createAddress(req, res) {
   try {
     // Extract address data from the request body
@@ -73,6 +119,48 @@ async function createAddress(req, res) {
   }
 }
 
+
+
+
+
+/**
+ * @swagger
+ * /api/user/address/{id}:
+ *   put:
+ *     summary: Update an existing address.
+ *     tags: [User Addresses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the address to update.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               // Add properties based on your Address schema
+ *     responses:
+ *       '200':
+ *         description: Address updated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 address:
+ *                   $ref: '#/components/schemas/Address'
+ *       '400':
+ *         description: Missing required address fields or invalid ID.
+ *       '404':
+ *         description: Address not found or unauthorized update.
+ *       '500':
+ *         description: Internal server error.
+ */
 async function updateAddress(req, res) {
   try {
     const addressId = req.query.id; // Assuming address ID comes from the route path
@@ -110,6 +198,29 @@ async function updateAddress(req, res) {
   }
 }
 
+
+
+/**
+ * @swagger
+ * /api/user/address/{id}:
+ *   delete:
+ *     summary: Delete an address.
+ *     tags: [User Addresses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the address to delete.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Address deleted successfully.
+ *       '400':
+ *         description: Missing address ID.
+ *       '404':
+ *         description: Address not found or unauthorized deletion.
+ */
 async function deleteAddress(req, res) {
   try {
     // get user and address Id to delete
@@ -143,7 +254,54 @@ async function deleteAddress(req, res) {
   }
 }
 
-//get necessary user Details with all the addresses
+
+
+
+
+/**
+ * @swagger
+ * /api/user/details:
+ *   get:
+ *     summary: Get user details including addresses.
+ *     tags: [User Details]
+ *     responses:
+ *       '200':
+ *         description: User details retrieved successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 username:
+ *                   type: string
+ *                   description: Username of the user.
+ *                 email:
+ *                   type: string
+ *                   description: Email of the user.
+ *                 addresses:
+ *                   type: array
+ *                   description: Array of user addresses.
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       firstName:
+ *                         type: string
+ *                         description: First name in the address.
+ *                       lastName:
+ *                         type: string
+ *                         description: Last name in the address.
+ *                       streetAddress:
+ *                         type: string
+ *                         description: Street address.
+ *                       apartmentNumber:
+ *                         type: string
+ *                         description: Apartment number.
+ *                       zipCode:
+ *                         type: string
+ *                         description: Zip code.
+ *       '500':
+ *         description: Internal server error.
+ */
 async function getUserDetails(req,res){
     try{
         //get the user details
@@ -176,7 +334,46 @@ async function getUserDetails(req,res){
     }
 }
 
-// update user profile info
+
+
+/**
+ * @swagger
+ * /api/user/update:
+ *   put:
+ *     summary: Update user details.
+ *     tags: [User Details]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: New username for the user.
+ *               email:
+ *                 type: string
+ *                 description: New email for the user.
+ *     responses:
+ *       '200':
+ *         description: User details updated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 userName:
+ *                   type: string
+ *                   description: Updated username.
+ *                 email:
+ *                   type: string
+ *                   description: Updated email.
+ *       '402':
+ *         description: Invalid username or email.
+ *       '500':
+ *         description: Internal server error.
+ */
 async function updateUserDetails(req,res){
     try{
     // check if the username and email is valid or not

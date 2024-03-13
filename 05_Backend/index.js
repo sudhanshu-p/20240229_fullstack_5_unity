@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 require("dotenv").config(); 
 const cors=require('cors');
 
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
 // Database connection
 const { connectToDatabase } = require("./database/db");
 // Importing Internal Routers
@@ -94,20 +97,5 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-
-
-
-console.log('Swagger UI setup complete');
+console.log("swaggerUI setup complete");
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-
-/**
- * @swagger
- * /api/postproduct:
- *  post:
- *    tags:
- *      - Seller
- *    summary: Retrieve a list of users
- *    description: Retrieve a list of task froma users table
- * 
- **/
