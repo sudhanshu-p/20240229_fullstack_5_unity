@@ -1,13 +1,14 @@
 <mat-form-field class="auth-input">
   <mat-label>Username</mat-label>
-  <input
+   <input
     type="text"
+    formControlName="username"
     matInput
     [formControl]="usernameFormControl"
     [errorStateMatcher]="matcher"
     placeholder="Username"
     (focus)="resetController()"
-  />
+  /> 
   <mat-hint>Your username</mat-hint>
   <mat-error>
     {{

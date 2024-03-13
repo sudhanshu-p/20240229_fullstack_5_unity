@@ -23,12 +23,11 @@
     margin-top: 40px;
 }
 
-.register-as-seller {
-    display: flex;
-}
-
+.register-as-seller,
 .register-as-buyer {
     display: flex;
+    align-items: center; /* Align items vertically */
+    margin-top: 10px; /* Adjust top margin */
 }
 
 .email {
@@ -37,7 +36,7 @@
 
 .signin-button input {
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 15px;
     height: 26px;
     width: 60%;
     padding-left: 6px;
@@ -84,4 +83,13 @@
     cursor: pointer;
     margin-left: 6px;
     font-weight: bold;
+}
+
+/* Additional styles for radio buttons and label */
+.user-type-selection {
+    margin-top: 10px; /* Adjust top margin */
+}
+
+.user-type-selection label {
+    margin-right: 10px; /* Add space between radio button and label */
 }

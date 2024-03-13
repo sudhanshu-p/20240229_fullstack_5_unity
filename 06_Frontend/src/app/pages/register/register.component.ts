@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { RegisterFormComponent } from '../../components/register-form/register-form.component';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -8,17 +13,22 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [
     RegisterFormComponent,
+    ReactiveFormsModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
   // This is to differentiate between the user and the seller.
-  userRole: 'user' | 'seller' = 'user' // Default value being user
+  @Input() userRole: 'user' | 'seller' = 'user'; // Ensure this is here
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { 
+    console.log(this.userRole)
+  }
 
   ngOnInit(): void {
     this.userRole = this.route.snapshot.data['role']
   }
 }
+
+
