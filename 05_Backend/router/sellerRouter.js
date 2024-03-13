@@ -13,6 +13,8 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *     description: Create a new product or add products in the e-commerce system.
  *     tags:
  *       - Sellers
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

@@ -65,7 +65,7 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *             format: uuid
  *             description: ID of an address associated with the user.
  *
- * /getUserAddresses:
+ * /user/getUserAddresses:
  *   get:
  *     summary: Get all addresses of the logged-in user
  *     description: Retrieve all addresses associated with the currently logged-in user.
@@ -102,15 +102,20 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *           application/json:
  *             example:
  *               message: "Internal server error"
+ *       securityDefinitions:
+ *         BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 // Address routes
-router.get("/address", verifyJwt, getUserMiddleware, userController.getUserAddresses);
+router.get("/getUserAddress", verifyJwt, getUserMiddleware, userController.getUserAddresses);
 
 
 /**
  * @swagger
- * /createAddress:
+ * /user/createAddress:
  *   post:
  *     summary: Create a new user address
  *     description: Create a new address for the logged-in user.
@@ -149,10 +154,15 @@ router.get("/address", verifyJwt, getUserMiddleware, userController.getUserAddre
  *             example:
  *               message: "Internal server error"
  *
+ *       securityDefinitions:
+ *         BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  * 
  */
 
-router.post("/address", verifyJwt, getUserMiddleware, userController.createAddress);
+router.post("/createAddress", verifyJwt, getUserMiddleware, userController.createAddress);
 /**
  * @swagger
  * /updateAddress:
@@ -220,13 +230,18 @@ router.post("/address", verifyJwt, getUserMiddleware, userController.createAddre
  *           application/json:
  *             example:
  *               message: "Internal server error"
+ *       securityDefinitions:
+ *         BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 router.put("/address", verifyJwt, getUserMiddleware, userController.updateAddress);
 
 /**
  * @swagger
- * /deleteAddress:
+ * /user/deleteAddress:
  *   delete:
  *     summary: Delete a user address
  *     description: Delete an address for the logged-in user.
@@ -266,6 +281,11 @@ router.put("/address", verifyJwt, getUserMiddleware, userController.updateAddres
  *           application/json:
  *             example:
  *               message: "Internal server error"
+ *       securityDefinitions:
+ *         BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 router.delete("/address", verifyJwt, getUserMiddleware, userController.deleteAddress);
@@ -273,7 +293,7 @@ router.delete("/address", verifyJwt, getUserMiddleware, userController.deleteAdd
 // User routes
 /**
  * @swagger
- * /getUserDetails:
+ * /user/getUserDetails:
  *   get:
  *     summary: Get user details
  *     description: Retrieve details of the logged-in user, including associated addresses.
@@ -306,6 +326,11 @@ router.delete("/address", verifyJwt, getUserMiddleware, userController.deleteAdd
  *           application/json:
  *             example:
  *               message: "Internal server error"
+ *       securityDefinitions:
+ *         BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 router.get("/", verifyJwt, getUserMiddleware, userController.getUserDetails);

@@ -1,10 +1,8 @@
 // External dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv").config();
-
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+require("dotenv").config(); 
+const cors=require('cors');
 
 // Database connection
 const { connectToDatabase } = require("./database/db");
@@ -19,6 +17,11 @@ const checkoutRouter = require("./router/checkoutRouter");
 // Setting up the app
 const app = express();
 app.use(bodyParser.json());
+
+app.use(cors());
+
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 // Routes
 // Authentication Router
 app.use("/auth", authRouter);
@@ -38,27 +41,6 @@ app.use("/seller", sellerRouter);
 // Checkout Router
 app.use("/checkout", checkoutRouter);
 
-
-
-
-const swaggerDefinition = {
-  openapi: '3.0.0',
-  info: {
-    title: 'Express API for JSONPlaceholder',
-    version: '1.0.0',
-    description: 'Register and login users'
-  },
-};
-
-const options = {
-  swaggerDefinition,
-  apis: ['./controllers/.js', './router/*.js']
-};
-
-// Initialize Swagger-jsdoc
-swaggerSpec = swaggerJSDoc(options);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 async function startServerAndDatabase() {
   await connectToDatabase();
   app.listen(process.env.PORT || 3000, () =>
@@ -69,3 +51,63 @@ async function startServerAndDatabase() {
 startServerAndDatabase();
 
 
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Express API for your project',
+      version: '1.0.0',
+      description: 'Description of your API',
+      license: {
+        name: 'MIT',
+        url: 'https://opensource.org/licenses/MIT',
+      },
+      contact: {
+        name: 'Your Name',
+        url: 'https://yourwebsite.com',
+        email: 'your@email.com',
+      },
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Development server',
+      },
+    ],
+
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'Authorization',
+          description: 'Enter your bearer token in the format "Bearer {token}"'
+        }
+      }
+    },
+    security: [{ BearerAuth: [] }]
+  },
+  // Specify the path to your API routes
+  apis: ['./router/*.js'],
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
+
+
+
+console.log('Swagger UI setup complete');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
+/**
+ * @swagger
+ * /api/postproduct:
+ *  post:
+ *    tags:
+ *      - Seller
+ *    summary: Retrieve a list of users
+ *    description: Retrieve a list of task froma users table
+ * 
+ **/

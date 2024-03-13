@@ -12,7 +12,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 import { OrderDetailsBuyerComponent } from './components/order-details-buyer/order-details-buyer.component';
-
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 export const routes: Routes = [
     { path: '', component: HomepageComponent },
     { path: 'product', component: ProductComponent },
@@ -21,13 +21,14 @@ export const routes: Routes = [
     { path: 'inventory', component: InventoryManagementComponent },
     { path: 'login', component: LoginComponent },
     // Register for user
-    { path: 'register', component: RegisterComponent, data: { role: "user" } },
+    { path: 'register', component: RegisterComponent},
     // Register for seller
-    { path: 'register-seller', component: RegisterComponent, data: { role: "seller" } },
+    { path: 'register-seller', component: RegisterComponent, data: { userRole: "seller" } },
     // Checkout
     { path: 'checkout', component: CheckoutPageComponent },
     // Seller's Dashboard
     { path: 'seller/home', component: SellerDashboardComponent },
     { path: 'search', component: SearchpageComponent },
-    { path: 'orderDetails', component: OrderDetailsBuyerComponent }
+    { path: 'orderDetails', component: OrderDetailsBuyerComponent },
+    { path: 'register1', component: RegisterFormComponent }
 ];
