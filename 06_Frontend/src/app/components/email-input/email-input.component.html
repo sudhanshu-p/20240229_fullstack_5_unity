@@ -1,13 +1,14 @@
 <mat-form-field class="auth-input">
   <mat-label>Email</mat-label>
-  <input
+   <input
     type="email"
+    formGroupNmae="email"
     matInput
     [formControl]="emailFormControl"
     [errorStateMatcher]="matcher"
     placeholder="Ex. pat@example.com"
     (focus)="resetController()"
-  />
+  /> 
 
   <mat-hint>Your email address</mat-hint>
   <mat-error>

@@ -1,7 +1,11 @@
 // External dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv").config();
+require("dotenv").config(); 
+const cors=require('cors');
+
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 // Database connection
 const { connectToDatabase } = require("./database/db");
@@ -17,7 +21,7 @@ const checkoutRouter = require("./router/checkoutRouter");
 const app = express();
 app.use(bodyParser.json());
 
-
+app.use(cors());
 
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -74,6 +78,18 @@ const swaggerOptions = {
         description: 'Development server',
       },
     ],
+    
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'Authorization',
+          description: 'Enter your bearer token in the format "Bearer {token}"'
+        }
+      }
+    },
+    security: [{ BearerAuth: [] }]
   },
   // Specify the path to your API routes
   apis: ['./router/*.js'],
@@ -81,8 +97,5 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-
-
-
-console.log('Swagger UI setup complete');
+console.log("swaggerUI setup complete");
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
