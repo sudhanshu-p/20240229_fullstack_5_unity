@@ -23,7 +23,7 @@ router.get('/search', searchProducts);
 router.post('/:id/review', verifyJwt, getUserMiddleware, validateReviewLength, checkAbusiveWords, addReview);
 
 // Route to get trending products
-// router.get('/', getTrendingProductsController);
+router.get('/getTrendingProducts', getTrendingProductsController);
 
 
 module.exports = router;

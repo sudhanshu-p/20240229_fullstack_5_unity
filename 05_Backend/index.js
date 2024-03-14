@@ -23,8 +23,6 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
 // Routes
 // Authentication Router
 app.use("/auth", authRouter);
