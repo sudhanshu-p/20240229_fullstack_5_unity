@@ -2,27 +2,58 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 const User = require("../models/user");
 const mongoose = require("mongoose");
+const tokenManager = require("../tokenManager");
+
+// const tempToken = tokenManager.getToken();
 
 
 
-async function fetchWithAuthorization(url, options = {}) {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('No token found');
-  }
 
-  const headers = {
-    ...options.headers,
-    Authorization: `Bearer ${token}`,
-  };
+// const http = require('http');
+// const url = 'https://example.com/api/data';
+// const token = localStorage.getItem('token');
 
-  try {
-    const response = await fetch(url, { ...options, headers });
-    return response.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
+// const options = {
+//   method: 'GET',
+//   headers: {
+//     'Authorization': `Bearer ${token}`,
+//     'Content-Type': 'application/json',
+//   },
+// };
+
+// const req = http.request(url, options, (res) => {
+//   // Handle response...
+// });
+
+// req.on('error', (error) => {
+//   console.error('Error:', error);
+// });
+
+// req.end();
+
+
+
+
+
+
+// async function fetchWithAuthorization(url, options = {}) {
+//   const token = localStorage.getItem('token');
+//   if (!token) {
+//     throw new Error('No token found');
+//   }
+
+//   const headers = {
+//     ...options.headers,
+//     Authorization: `Bearer ${token}`,
+//   };
+
+//   try {
+//     const response = await fetch(url, { ...options, headers });
+//     return response.json();
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// }
 
 
 
