@@ -1,21 +1,59 @@
+
 <div class="main-content">
     <div class="address-selection">
         <label id="select-address">Shipping Address</label>
-        <mat-radio-group aria-labelledby="select-address" class="address-radio-group" [(ngModel)]="selectedAddress">
-            <mat-radio-button class="address-radio-button" [value]="new_address">
-                <h1 class="address-radio-title">Add New Address</h1>
-            </mat-radio-button>
-            <app-new-address-form></app-new-address-form>
-            @for (address of allAddresses; track address) {
-            <mat-radio-button class="address-radio-button" [value]="address">
-                <h1 class="address-radio-title">{{address}}</h1>
-            </mat-radio-button>
-            }
-        </mat-radio-group>
+        <form class="new-address-form" (ngSubmit)="onSubmit()" [formGroup]="addressForm">
+            <table class="address-name-section">
+              <tr>
+                <td>
+                  <mat-form-field>
+                    <mat-label>First name</mat-label>
+                    <input matInput formControlName="firstName">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+            <p>
+              <mat-form-field class="street-address">
+                <mat-label>Street Address</mat-label>
+                <textarea matInput placeholder="Ex. 100 Main St" formControlName="streetAddress"></textarea>
+              </mat-form-field>
+            </p>
+            <table cellspacing="0" class="address-other-details">
+              <tr>
+                <td>
+                  <mat-form-field>
+                    <mat-label>Apt Number</mat-label>
+                    <input matInput placeholder="Ex. San Francisco" formControlName="apartmentNumber">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <mat-label>State</mat-label>
+                    <input matInput placeholder="Ex. California" formControlName="state">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <mat-label>Zip</mat-label>
+                    <input matInput #postalCode maxlength="6" placeholder="Ex. 410006" formControlName="zipcode">
+                    <mat-hint align="end">{{ postalCode.value.length }} / 6</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+            <button type="submit" mat-raised-button color="primary">Submit</button>
+          </form>
+          
         <!-- <add-new-address></add-new-address> -->
         <!-- <div class="saved-addresses" *ngfor="addresses"></div> -->
     </div>
-
     <div class="order-details-section">
         <div class="order-detail">
             <div class="place-order-section">

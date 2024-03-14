@@ -17,7 +17,6 @@ import { MyErrorStateMatcher } from '../../classes';
   selector: 'app-register-form',
   standalone: true,
   imports: [
-    
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
@@ -95,9 +94,6 @@ passwordFormControl = new FormControl('', [
   Validators.minLength(8),
   Validators.maxLength(20),
 ]);
-
-
-
 matcher = new MyErrorStateMatcher();
 
 }

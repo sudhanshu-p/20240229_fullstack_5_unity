@@ -28,18 +28,18 @@ const productSchema = new mongoose.Schema({
   },
   thumbnailUrl: {
     type: String,
-    required: true,
+    //required: true,
     min: 6,
     max: 255,
   },
   images: {
     type: Array,
-    required: true,
+    //required: true,
   },
   seller_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    //required: true,
   },
   category: {
     type: String,
@@ -49,11 +49,11 @@ const productSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true,
+    //required: true,
   },
   discountPrice: {
     type: Number,
-    required: true,
+    //required: true,
   },
   reviews: [
     {

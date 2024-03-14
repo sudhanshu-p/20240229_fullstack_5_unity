@@ -2,90 +2,7 @@ import { Component, Input } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
-
-
-const ELEMENT_DATA= [
-  {
-    "id": 1,
-    "title": "iPhoneadsfffffffffffasdfafdadfadffff 9",
-    "description": "An apple mobile which is nothing like apple",
-    "price": 549,
-    "discountPercentage": 12.96,
-    "rating": 4.69,
-    "stock": 94,
-    "brand": "Apple",
-    "category": "smartphones",
-    "status": "In progress",
-    "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-    "images": [
-    "https://cdn.dummyjson.com/product-images/1/1.jpg",
-    "https://cdn.dummyjson.com/product-images/1/2.jpg",
-    "https://cdn.dummyjson.com/product-images/1/3.jpg",
-    "https://cdn.dummyjson.com/product-images/1/4.jpg",
-    "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-    ]
-    },
-  {
-    "id": 1,
-    "title": "iPhoneadsfffffffffffasdfafdadfadffff 9",
-    "description": "An apple mobile which is nothing like apple",
-    "price": 549,
-    "discountPercentage": 12.96,
-    "rating": 4.69,
-    "stock": 94,
-    "brand": "Apple",
-    "category": "smartphones",
-    "status": "In progress",
-    "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-    "images": [
-    "https://cdn.dummyjson.com/product-images/1/1.jpg",
-    "https://cdn.dummyjson.com/product-images/1/2.jpg",
-    "https://cdn.dummyjson.com/product-images/1/3.jpg",
-    "https://cdn.dummyjson.com/product-images/1/4.jpg",
-    "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-    ]
-    },
-  {
-    "id": 1,
-    "title": "iPhoneadsfffffffffffasdfafdadfadffff 9",
-    "description": "An apple mobile which is nothing like apple",
-    "price": 549,
-    "discountPercentage": 12.96,
-    "rating": 4.69,
-    "stock": 94,
-    "brand": "Apple",
-    "category": "smartphones",
-    "status": "In progress",
-    "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-    "images": [
-    "https://cdn.dummyjson.com/product-images/1/1.jpg",
-    "https://cdn.dummyjson.com/product-images/1/2.jpg",
-    "https://cdn.dummyjson.com/product-images/1/3.jpg",
-    "https://cdn.dummyjson.com/product-images/1/4.jpg",
-    "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-    ]
-    },
-  {
-    "id": 1,
-    "title": "iPhoneadsfffffffffffasdfafdadfadffff 9",
-    "description": "An apple mobile which is nothing like apple",
-    "price": 549,
-    "discountPercentage": 12.96,
-    "rating": 4.69,
-    "stock": 94,
-    "brand": "Apple",
-    "category": "smartphones",
-    "status": "In progress",
-    "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-    "images": [
-    "https://cdn.dummyjson.com/product-images/1/1.jpg",
-    "https://cdn.dummyjson.com/product-images/1/2.jpg",
-    "https://cdn.dummyjson.com/product-images/1/3.jpg",
-    "https://cdn.dummyjson.com/product-images/1/4.jpg",
-    "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-    ]
-    },
-];
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-order-details',
@@ -96,8 +13,28 @@ const ELEMENT_DATA= [
 })
 
 export class OrderDetailsComponent {
-  @Input() message:string=""
+  @Input() message: string = "";
   displayedColumns: string[] = ['image', 'price', 'status', 'action', 'cancel-order'];
-  dataSource = ELEMENT_DATA;
+  dataSource: any[] = []; // Initialize dataSource as an empty array
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.fetchData(); // Fetch data when component initializes
+  }
+
+  fetchData() {
+    this.http.get<any[]>('http://localhost:3000/seller/get') // Adjust URL as per your backend API
+      .subscribe(
+        (data) => {
+          console.log('Fetched data:', data);
+          this.dataSource = data; // Update dataSource with fetched data
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+          // Handle error appropriately (e.g., show error message)
+        }
+      );
+  }
 
 }

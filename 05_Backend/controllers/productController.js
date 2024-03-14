@@ -40,7 +40,6 @@ async function addReview(req, res) {
         userId: req.user.id,
     });
 
-
     try {
         const product = await Product.findOne({ _id: productId });
 
