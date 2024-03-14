@@ -24,6 +24,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 export class HomepageComponent implements OnInit {
   categoryData7: string[] = [];
+
   productData7: Product[] = [];
   productTitles7: string[] = [];
   productPrice7: string[] = [];

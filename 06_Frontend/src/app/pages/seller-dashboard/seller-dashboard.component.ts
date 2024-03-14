@@ -16,6 +16,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './seller-dashboard.component.css'
 })
 export class SellerDashboardComponent {
-  totalSales = 182172
-  totalOrders = 2280
+  totalSales = 3
+  totalOrders = 3
 }

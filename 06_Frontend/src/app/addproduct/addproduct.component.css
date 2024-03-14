@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0; /* Updated to remove padding around the entire body for centering */
+    background-color: #f4f4f4;
+    display: flex; /* Use flexbox to center the form */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Minimum height to fill the viewport vertically */
+}
+
+form#productForm {
+    background: #e6f7ff; /* Lighter blue background for a blue theme */
+    padding: 20px;
+    width: 50%; /* Adjust width as per your requirement */
+    max-width: 500px; /* Maximum width to ensure it doesn't get too large on big screens */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 76, 152, 0.2); /* A softer shadow with a blue tint */
+    border: 1px solid #007bff; /* Add a blue border to match the theme */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0; /* Keep padding at 0 for body */
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form#productForm {
+    background: #e6f7ff; 
+    padding: 10px; /* Reduced padding inside the form for less vertical space */
+    width: 50%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 76, 152, 0.2);
+    border: 1px solid #007bff;
+}
+
+.form-group {
+    margin-bottom: 10px; /* Reduced space between form fields */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0056b3;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px; /* Slightly reduced padding to decrease height */
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="url"]:focus,
+.form-group input[type="number"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0056b3;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 20px; /* Adjust button padding as well */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0056b3; /* Darker blue for the labels for consistency */
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb; /* Soften the border color */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="url"]:focus,
+.form-group input[type="number"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0056b3; /* Darker blue for focus state */
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+}
+

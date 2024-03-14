@@ -84,19 +84,19 @@ async function createProduct(req, res) {
   } = req.body;
 
   // Validate the input
-  if (
-    !titleValidator(title) ||
-    !descriptionValidator(description) ||
-    !stockValidator(stock) ||
-    !thumbnailUrlValidator(thumbnailUrl) ||
-    !imagesValidator(images) ||
-    !priceValidator(price) ||
-    !discountPriceValidator(discountPrice, price) ||
-    !categoryValidator(category) ||
-    !sellerValidator(req.user._id)
-  ) {
-    return res.status(400).json({ message: "Invalid input" });
-  }
+  // if (
+  //   !titleValidator(title) ||
+  //   !descriptionValidator(description) ||
+  //   !stockValidator(stock) ||
+  //   !thumbnailUrlValidator(thumbnailUrl) ||
+  //   !imagesValidator(images) ||
+  //   !priceValidator(price) ||
+  //   !discountPriceValidator(discountPrice, price) ||
+  //   !categoryValidator(category) ||
+  //   !sellerValidator(req.user._id)
+  // ) {
+  //   return res.status(400).json({ message: "Invalid input" });
+  // }
 
   // Create the product
   const product = new Product({
@@ -108,7 +108,7 @@ async function createProduct(req, res) {
     category,
     price,
     discountPrice,
-    seller_id: req.user._id,
+   // seller_id: req.user._id,
   });
 
   try {

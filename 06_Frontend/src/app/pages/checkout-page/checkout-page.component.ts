@@ -1,30 +1,64 @@
 import { Component } from '@angular/core';
-
 import { NewAddressFormComponent } from '../../components/new-address-form/new-address-form.component';
-
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-checkout-page',
   standalone: true,
   imports: [
+    HttpClientModule,
     NewAddressFormComponent,
     MatRadioModule,
-    FormsModule,
     MatDividerModule,
     MatListModule,
     MatButtonModule,
+    MatInputModule, 
+    MatFormFieldModule, 
+    ReactiveFormsModule
   ],
   templateUrl: './checkout-page.component.html',
   styleUrl: './checkout-page.component.css'
 })
 export class CheckoutPageComponent {
-  selectedAddress: string = 'New Address';
-  allAddresses: string[] = ['Address 1', 'Address 2'];
-  new_address: string = "New Address"
+  addressForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+    this.addressForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      streetAddress: ['', Validators.required],
+      apartmentNumber: [''],
+      state: ['', Validators.required],
+      zipcode: ['', [Validators.required, Validators.pattern(/^\d{6}$/)]]
+    });
+  }
+
+  onSubmit() {
+    if (this.addressForm.valid) {
+      console.log('Form submitted successfully!');
+      console.log(this.addressForm.value);
+
+      // Send HTTP POST request to backend API
+      this.http.post<any>('http://localhost:3000/user/createAddress', this.addressForm.value)
+        .subscribe(
+          (response) => {
+            console.log('Address added successfully:', response);
+            // Handle success response, e.g., show success message
+          },
+          (error) => {
+            console.error('Error adding address:', error);
+            // Handle error response, e.g., show error message
+          }
+        );
+    } else {
+      console.log('Form is not valid!');
+    }
+  }
 }

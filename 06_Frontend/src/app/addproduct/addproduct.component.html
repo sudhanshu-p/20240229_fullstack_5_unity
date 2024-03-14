@@ -1,0 +1,47 @@
+
+<body>
+    <form id="productForm"  (ngSubmit)="onSubmit()" [formGroup]="submitForm">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" formControlName="title">
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"  formControlName="description"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock"   formControlName="stock">
+        </div>
+        
+        <div class="form-group">
+            <label for="thumbnailUrl">Thumbnail URL:</label>
+            <input type="url" id="thumbnailUrl" name="thumbnailUrl"   formControlName="thumbnail">
+        </div>
+        
+        <div class="form-group">
+            <label for="images">Image URLs:</label>
+            <input type="url" id="images" name="images" multiple  formControlName="image">
+            <small>Add multiple URLs separated by commas</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category"   formControlName="category">
+        </div>
+        
+        <div class="form-group">
+            <label for="price">Price ($):</label>
+            <input type="number" id="price" name="price" step="0.01"  formControlName="price">
+        </div>
+        
+        <div class="form-group">
+            <label for="discountPrice">Discount Price ($):</label>
+            <input type="number" id="discountPrice" name="discountPrice" step="0.01"  formControlName="discountprice">
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>

@@ -92,7 +92,8 @@ const { options } = require("./authRouter");
 
 
 // fetchWithAuthorization("localhost:3000/seller/createProduct", options = { method: 'GET' })
-router.post("/createProduct", verifyJwt, getUserMiddleware, sellerController.createProduct);
+// router.post("/createProduct", verifyJwt, getUserMiddleware, sellerController.createProduct);
+router.post("/createProduct", sellerController.createProduct);
 
 
 

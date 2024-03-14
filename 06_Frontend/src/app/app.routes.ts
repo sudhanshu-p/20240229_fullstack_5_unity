@@ -13,6 +13,7 @@ import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.compo
 import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 import { OrderDetailsBuyerComponent } from './components/order-details-buyer/order-details-buyer.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
 export const routes: Routes = [
     { path: '', component: HomepageComponent },
     { path: 'product', component: ProductComponent },
@@ -30,5 +31,6 @@ export const routes: Routes = [
     { path: 'seller/home', component: SellerDashboardComponent },
     { path: 'search', component: SearchpageComponent },
     { path: 'orderDetails', component: OrderDetailsBuyerComponent },
-    { path: 'register1', component: RegisterFormComponent }
+    { path: 'add', component: AddproductComponent },
+   
 ];
