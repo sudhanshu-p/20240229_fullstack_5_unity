@@ -10,19 +10,17 @@
     </div>
 </div> -->
 
-
 <div class="images">
-  <div *ngFor="let row of [1, 2, 3]">
-      <div class="product-grid">
-          @for (product of productData; track product) {
-          <div class="product">
-              <img class="product-image" loading="lazy" alt="" src="{{product}}" />
-              <h3 class="product-title">{{ product.title }}</h3>
-              <p class="product-price">{{ product.price | currency: 'USD' }}</p>
-              <!-- <a class="product-button" id="registerAsBuyer" href="/product">view product</a> -->
-              <a href="/checkout"><button class="product-button">Checkout</button></a>
-          </div>
-          }
+    <div class="product-grid">
+      <div *ngFor="let product of productData">
+        <div class="product">
+          <img class="product-image" loading="lazy" [src]="product.thumbnailUrl" alt="{{ product.title }}" />
+          <h3 class="product-title">Name:{{ product.title }}</h3>
+          <h3 class="product-title">Category:{{ product.category }}</h3>
+          <h4 class="product-price">{{ product.price | currency: 'USD' }}</h4>
+          <a href="/product"><button class="product-button">View</button></a>
+        </div>
       </div>
+    </div>
   </div>
-</div>
+  

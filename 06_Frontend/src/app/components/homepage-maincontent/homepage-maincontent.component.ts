@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../productService'; 
 import { HttpClient } from '@angular/common/http';
-import { Component,Input } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-homepage-maincontent',
@@ -10,8 +10,21 @@ import { Router } from '@angular/router';
   templateUrl: './homepage-maincontent.component.html',
   styleUrl: './homepage-maincontent.component.css'
 })
-export class HomepageMaincontentComponent {
-  @Input() productData: Array<Product> = [];
-  // @Input() productTitle: Array<String> = [];
-  // @Input() productPrice: Array<String> = [];
+
+export class  HomepageMaincontentComponent implements OnInit {
+  productData: any[] = []; // Define an array to store product data
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.http.get<any>('http://localhost:3000/product/getAllProducts').subscribe({
+      next: (response) => {
+        console.log(response);
+        this.productData = response.products; // Assuming 'products' is the key containing the array of products
+      },
+      error: (err) => {
+        console.error('Error fetching product data:', err);
+      }
+    });
+  }
 }

@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class SearchpageMaincontentComponent {
   @Input() productData: Array<Product> = [
     {
+      title: 'Apparel',
       category: 'Clothing',
       price: 19.99,
       imageUrl: '../../../src/assets/basics@2x.png'

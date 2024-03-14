@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema({
     max: 255,
   },
   images: {
-    type: Array,
+    type: String,
     // required: true,
   },
   seller_id: {
@@ -54,10 +54,6 @@ const productSchema = new mongoose.Schema({
   discountPrice: {
     type: Number,
     // required: true,
-  },
-  discountPrice: {
-    type: Number,
-    //required: true,
   },
   reviews: [
     {
