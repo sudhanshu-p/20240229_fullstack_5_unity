@@ -23,8 +23,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+
 // Routes
 // Authentication Router
 app.use("/auth", authRouter);
@@ -52,9 +51,6 @@ async function startServerAndDatabase() {
 }
 
 startServerAndDatabase();
-
-
-
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0',

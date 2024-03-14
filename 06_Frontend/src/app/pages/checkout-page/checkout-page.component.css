@@ -1,4 +1,6 @@
-.main-content {
+
+
+  .main-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,3 +118,4 @@ mat-divider {
         padding: 0 0 2rem 0;
     }
 }
+

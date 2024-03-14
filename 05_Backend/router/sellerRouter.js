@@ -91,7 +91,7 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
 
 
 
-router.post("/createProduct", verifyJwt, getUserMiddleware, sellerController.createProduct);
+router.post("/createProduct", sellerController.createProduct);
 
 
 
