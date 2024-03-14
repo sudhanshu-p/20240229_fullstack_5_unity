@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './homepage-maincontent.component.css'
 })
 export class HomepageMaincontentComponent {
-  @Input() productData: Array<String> = [];
-
-
+  @Input() productData: Array<Product> = [];
+  // @Input() productTitle: Array<String> = [];
+  // @Input() productPrice: Array<String> = [];
 }

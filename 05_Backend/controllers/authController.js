@@ -137,6 +137,12 @@ async function signin(req, res) {
     // Once the frontend and backend are connected,
     // the token will be sent in the response header
     res.status(200).json({ token, role: user.role });
+    if (res.ok) {
+      localStorage.setItem('token', token);
+      
+      localStorage.setItem('role', user.role);
+      console.log("Stored locally")
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

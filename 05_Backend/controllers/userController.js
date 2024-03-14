@@ -102,19 +102,20 @@ async function createAddress(req, res) {
     }
 
     // Create a new user address object
-    address = new Address({
+    const address = new Address({
       ...addressDetails,
       userId: req.user._id, // Link address to the user
     });
     const savedAddress = await address.save(); // Save the new address
 
     // Find the address by ID and ensure it belongs to the user
-    user = await User.findById(savedAddress.userId);
+    const user = await User.findById(savedAddress.userId);
 
     user.addresses.push(savedAddress._id) // Update user's address ID
     await user.save(); // Persist the updated user object
     res.status(201).json({ address: savedAddress });
   } catch (err) {
+    console.error(err)
     res.status(500).json({ message: "Internal server error" });
   }
 }

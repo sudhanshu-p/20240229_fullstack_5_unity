@@ -2,7 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const sellerController = require("../controllers/sellerController");
-const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
+const { verifyJwt, getUserMiddleware, fetchWithAuthorization } = require("../dependencies/jwtHelpers");
+const { options } = require("./authRouter");
 
 
 /**
@@ -90,7 +91,8 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  */
 
 
-
+// fetchWithAuthorization("localhost:3000/seller/createProduct", options = { method: 'GET' })
+// router.post("/createProduct", verifyJwt, getUserMiddleware, sellerController.createProduct);
 router.post("/createProduct", sellerController.createProduct);
 
 

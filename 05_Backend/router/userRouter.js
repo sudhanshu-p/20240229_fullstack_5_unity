@@ -162,10 +162,13 @@ router.get("/getUserAddress", verifyJwt, getUserMiddleware, userController.getUs
  * 
  */
 
+// router.post("/createAddress", verifyJwt, getUserMiddleware, userController.createAddress);
 router.post("/createAddress", userController.createAddress);
+
+
 /**
  * @swagger
- * /updateAddress:
+ * /user/updateAddress:
  *   put:
  *     summary: Update a user address
  *     description: Update an existing address for the logged-in user.
@@ -237,7 +240,7 @@ router.post("/createAddress", userController.createAddress);
  *         name: Authorization
  */
 
-router.put("/address", verifyJwt, getUserMiddleware, userController.updateAddress);
+router.put("/updateAddress", verifyJwt, getUserMiddleware, userController.updateAddress);
 
 /**
  * @swagger
@@ -288,7 +291,7 @@ router.put("/address", verifyJwt, getUserMiddleware, userController.updateAddres
  *         name: Authorization
  */
 
-router.delete("/address", verifyJwt, getUserMiddleware, userController.deleteAddress);
+router.delete("/deleteAddress", verifyJwt, getUserMiddleware, userController.deleteAddress);
 
 // User routes
 /**

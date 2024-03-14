@@ -13,7 +13,64 @@ const {
   sellerValidator,
 } = require("../dependencies/validators/Product");
 
-/** Controller for creating product */
+
+/**
+ * @swagger
+ * /seller/createProduct:
+ *   post:
+ *     summary: Create new product.
+ *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *         schemas:
+  *         Product:
+  *           type: object
+  *           properties:
+  *             title:
+  *               type: string
+  *             description:
+  *               type: string
+  *             trending:
+  *               type: boolean
+  *             stock:
+  *               type: number
+  *             thumbnailUrl:
+  *               type: string
+  *             images:
+  *               type: array
+  *               items:
+  *                 type: string
+  *             seller_id:
+  *               type: string
+  *             category:
+  *               type: string
+  *             price:
+  *               type: number
+  *             discountPrice:
+  *               type: number
+  *             reviews:
+  *               type: array
+  *               items:
+  *                 type: string
+  *             ratings:
+  *               type: number
+ *     responses:
+ *       '200':
+ *         description: Product created successfully.
+ *       '400':
+ *         description: Invalid input.
+ *       '500':
+ *         description: Internal server error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
+ */
 async function createProduct(req, res) {
   const {
     title,

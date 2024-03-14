@@ -23,7 +23,6 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-
 // Routes
 // Authentication Router
 app.use("/auth", authRouter);

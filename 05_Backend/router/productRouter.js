@@ -249,7 +249,6 @@ router.post('/:id/review', verifyJwt, getUserMiddleware, validateReviewLength, c
  *         in: header
  *         name: Authorization
  */
-
 router.get('/getTrendingProducts', getTrendingProductsController);
 
 

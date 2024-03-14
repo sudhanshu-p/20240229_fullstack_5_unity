@@ -23,33 +23,37 @@ const productSchema = new mongoose.Schema({
   },
   stock: {
     type: Number,
-    required: true,
+    // required: true,
     min: 0,
   },
   thumbnailUrl: {
     type: String,
-    //required: true,
+    // required: true,
     min: 6,
     max: 255,
   },
   images: {
     type: Array,
-    //required: true,
+    // required: true,
   },
   seller_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    //required: true,
+    // required: true,
   },
   category: {
     type: String,
-    required: true,
+    // required: true,
     min: 6,
     max: 255,
   },
   price: {
     type: Number,
-    //required: true,
+    // required: true,
+  },
+  discountPrice: {
+    type: Number,
+    // required: true,
   },
   discountPrice: {
     type: Number,
