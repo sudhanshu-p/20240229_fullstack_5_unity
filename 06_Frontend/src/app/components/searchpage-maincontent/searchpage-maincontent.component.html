@@ -1,14 +1,12 @@
 <!-- searchpage-maincontent.component.html -->
-
 <div class="images">
-    <div *ngFor="let product of productData">
-        <div class="product-grid">
-            @for (Product of productData; track Product){
-            <div class="product-image"><img src="{{product.imageUrl}}" alt=""></div>
-            <h3 class="product-title">{{ product.category }}</h3>
-            <p class="product-price">{{ product.price | currency: 'USD' }}</p>
-            <button class="product-button">Add to Cart</button>
-            }
-        </div>
+  <div class="product-grid">
+    <div *ngFor="let product of productData" class="product">
+      <div class="product-image"><img src="{{ product.imageUrl }}" alt=""></div>
+      <h3 class="product-title">{{ product.category }}</h3>
+      <p class="product-price">{{ product.price | currency: 'USD' }}</p>
+      <button class="product-button">Checkout</button>
     </div>
+  </div>
 </div>
+

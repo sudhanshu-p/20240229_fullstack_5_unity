@@ -143,24 +143,26 @@ async function searchProducts(req, res) {
 
 // Controller to get trending products
 async function getTrendingProductsController(req, res) {
-    const { role } = req.user;
     try {
-
-        if (role === 'seller') {
-            // Assuming seller-specific logic to fetch seller's products
-            const sellerProducts = products.filter(product => product.seller_id === userId);
-            res.json({ sellerProducts });
-        } else if (role === 'user') {
-            const trendingProducts = getTrendingProducts(products);
-            res.json({ trendingProducts });
-        } else {
-            res.status(403).json({ message: 'Invalid role' });
-        }
+        // const { role } = req.user;
+  
+        // if (role === 'seller') {
+        //     const userId = req.user.id;
+        //     const sellerProducts = await Product.find({ seller_id: userId, trending: true }).select('thumbnailUrl category');
+        //     res.json({ products: sellerProducts });
+        // } else if (role === 'user') {
+        //     const trendingProducts = await Product.find({ trending: true }).select('thumbnailUrl category');
+        //     res.json({ products: trendingProducts });
+        // } else {
+        //     res.status(403).json({ message: 'Invalid role' });
+        // }
+        const trendingProducts = await Product.find({ trending: true }).select('category');
+        res.json({ products: trendingProducts });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
-}
+  }
 
 // Implement your logic to sort by rating, price, or default to sorting by name
 function sortResults(results, sortField) {
