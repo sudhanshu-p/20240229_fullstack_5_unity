@@ -213,7 +213,7 @@ router.post('/:id/review', verifyJwt, getUserMiddleware, validateReviewLength, c
 // Route to get trending products
 /**
  * @swagger
- * /product/getTrendingProducts:
+ * /product/:
  *   get:
  *     summary: Get trending products
  *     description: Retrieve trending products based on the user's role.
@@ -250,7 +250,7 @@ router.post('/:id/review', verifyJwt, getUserMiddleware, validateReviewLength, c
  *         name: Authorization
  */
 
-router.get('/getTrendingProducts', getTrendingProductsController);
+router.get('/', getTrendingProductsController);
 
 
 module.exports = router;

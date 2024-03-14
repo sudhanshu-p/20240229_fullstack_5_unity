@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 
 
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   imports: [
     RegisterFormComponent,
     ReactiveFormsModule,
+    NavbarComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',

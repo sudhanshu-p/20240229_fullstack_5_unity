@@ -10,7 +10,7 @@ import { MyOrdersSellerComponent } from './pages/my-orders-seller/my-orders-sell
 import { InventoryManagementComponent } from './pages/inventory-management/inventory-management.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
-import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
+// import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 import { OrderDetailsBuyerComponent } from './components/order-details-buyer/order-details-buyer.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 export const routes: Routes = [
@@ -27,7 +27,7 @@ export const routes: Routes = [
     // Checkout
     { path: 'checkout', component: CheckoutPageComponent },
     // Seller's Dashboard
-    { path: 'seller/home', component: SellerDashboardComponent },
+    // { path: 'seller/home', component: SellerDashboardComponent },
     { path: 'search', component: SearchpageComponent },
     { path: 'orderDetails', component: OrderDetailsBuyerComponent },
     { path: 'register1', component: RegisterFormComponent }
