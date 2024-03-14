@@ -3,13 +3,38 @@ const secret = process.env.JWT_SECRET;
 const User = require("../models/user");
 const mongoose = require("mongoose");
 
+
+
+async function fetchWithAuthorization(url, options = {}) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('No token found');
+  }
+
+  const headers = {
+    ...options.headers,
+    Authorization: `Bearer ${token}`,
+  };
+
+  try {
+    const response = await fetch(url, { ...options, headers });
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+
+
+
+
 /** Middleware helper function to verify JWT token
  * @param {Object} req - request object
  * @param {Object} res - response object
  * @param {Function} next - next function to call
  */
 async function verifyJwt(req, res, next) {
-  // Token is of the format Bearer `token` in the headers
+
   const token = req.headers.authorization?.split(" ")[1];
 
   // If there is no token
@@ -55,4 +80,4 @@ async function getUserMiddleware(req, res, next) {
   next();
 }
 
-module.exports = { verifyJwt, getUserFromId, getUserMiddleware };
+module.exports = { verifyJwt, getUserFromId, getUserMiddleware, fetchWithAuthorization };

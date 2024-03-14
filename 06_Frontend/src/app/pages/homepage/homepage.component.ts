@@ -24,7 +24,9 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 export class HomepageComponent implements OnInit {
   categoryData7: string[] = [];
-  productData7: string[] = [];
+  productData7: Product[] = [];
+  productTitles7: string[] = [];
+  productPrice7: string[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -39,6 +41,8 @@ export class HomepageComponent implements OnInit {
       if (response.products && response.products.length > 0) {
         // Assuming products array is directly returned in the response
         // Extract thumbnailUrls and categories from the response
+        this.productData7 = response.products.map((product: { thumbnailUrl: any; }) => product.thumbnailUrl);
+        this.productData7 = response.products.map((product: { thumbnailUrl: any; }) => product.thumbnailUrl);
         this.productData7 = response.products.map((product: { thumbnailUrl: any; }) => product.thumbnailUrl);
         this.categoryData7 = response.products.map((product: { category: any; }) => product.category);
       }

@@ -97,7 +97,8 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers");
  *         name: Authorization
  */
 
-router.post("/checkout", verifyJwt, getUserMiddleware, checkoutController.checkout);
+// router.post("/checkout", verifyJwt, getUserMiddleware, checkoutController.checkout);
+router.post("/checkout", checkoutController.checkout);
 
 // Exporting the router
 module.exports = router;

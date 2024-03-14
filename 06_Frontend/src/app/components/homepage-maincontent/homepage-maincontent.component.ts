@@ -9,5 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './homepage-maincontent.component.css'
 })
 export class HomepageMaincontentComponent {
-  @Input() productData: Array<String> = [];
+  @Input() productData: Array<Product> = [];
+  // @Input() productTitle: Array<String> = [];
+  // @Input() productPrice: Array<String> = [];
 }

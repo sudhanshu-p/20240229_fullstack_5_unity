@@ -163,6 +163,7 @@ router.get("/getUserAddress", verifyJwt, getUserMiddleware, userController.getUs
  */
 
 router.post("/createAddress", verifyJwt, getUserMiddleware, userController.createAddress);
+// router.post("/createAddress", userController.createAddress);
 /**
  * @swagger
  * /user/updateAddress:
