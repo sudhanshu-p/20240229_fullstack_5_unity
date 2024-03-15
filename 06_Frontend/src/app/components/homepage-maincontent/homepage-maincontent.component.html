@@ -14,11 +14,13 @@
     <div class="product-grid">
       <div *ngFor="let product of productData">
         <div class="product">
-          <img class="product-image" loading="lazy" [src]="product.thumbnailUrl" alt="{{ product.title }}" />
+          <img class="product-image"  [src]="product.thumbnailUrl" alt="{{ product.title }}" />
           <h3 class="product-title">Name:{{ product.title }}</h3>
           <h3 class="product-title">Category:{{ product.category }}</h3>
           <h4 class="product-price">{{ product.price | currency: 'USD' }}</h4>
-          <a href="/product"><button class="product-button">View</button></a>
+          <a [routerLink]="['/product']" [queryParams]="{ _id: product._id }">
+            <button class="product-button">View</button>
+          </a>
         </div>
       </div>
     </div>

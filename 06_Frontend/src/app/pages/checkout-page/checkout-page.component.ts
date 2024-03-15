@@ -9,6 +9,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+// import { HomepageNavbarComponent } from '../../components/homepage-navbar/homepage-navbar.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 @Component({
   selector: 'app-checkout-page',
   standalone: true,
@@ -21,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatInputModule, 
     MatFormFieldModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NavbarComponent
   ],
   templateUrl: './checkout-page.component.html',
   styleUrl: './checkout-page.component.css'

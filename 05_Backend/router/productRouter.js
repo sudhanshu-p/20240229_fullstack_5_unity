@@ -12,7 +12,7 @@ const router = express.Router();
 router.use(express.json());
 
 // Controller setup
-const { searchProducts, addReview, getTrendingProductsController,getAllProducts } = require('../controllers/productController');
+const { searchProducts, addReview, getTrendingProductsController,getAllProducts,getProductById } = require('../controllers/productController');
 const { validateReviewLength, checkAbusiveWords } = require("../dependencies/validators/Reviews")
 const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers")
 
@@ -123,7 +123,9 @@ const { verifyJwt, getUserMiddleware } = require("../dependencies/jwtHelpers")
 
 router.get('/search', searchProducts);
 
+// additional api added 
 router.get('/getAllProducts',getAllProducts);
+router.get('/getProductById',getProductById);
 // Route for adding a review
 /**
  * @swagger

@@ -219,10 +219,32 @@ async function getAllProducts(req, res) {
     }
   }
   
+  async function getProductById(req, res) {
+    try {
+        // Extract the product ID from the query parameters
+        const productId = req.query.productId;
+
+        // Query the database to find the product by its ID
+        const product = await Product.findById(productId);
+
+        // Check if the product exists
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // Return the product as a JSON response
+        res.status(200).json({ product });
+    } catch (error) {
+        // Handle errors
+        console.error('Error fetching product by ID:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
 
 module.exports = {
     addReview,
     searchProducts,
     getTrendingProductsController,
     getAllProducts,
+    getProductById,
 };

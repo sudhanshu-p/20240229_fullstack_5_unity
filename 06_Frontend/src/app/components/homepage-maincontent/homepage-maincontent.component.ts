@@ -3,10 +3,11 @@ import { ProductService } from '../../productService';
 import { HttpClient } from '@angular/common/http';
 import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 @Component({
   selector: 'app-homepage-maincontent',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './homepage-maincontent.component.html',
   styleUrl: './homepage-maincontent.component.css'
 })
