@@ -32,5 +32,6 @@ export const routes: Routes = [
     { path: 'search', component: SearchpageComponent },
     { path: 'orderDetails', component: OrderDetailsBuyerComponent },
     { path: 'add', component: AddproductComponent },
+    
    
 ];

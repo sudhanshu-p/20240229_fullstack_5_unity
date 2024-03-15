@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from '../components/navbar/navbar.component';
 @Component({
   selector: 'app-addproduct',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
+    ReactiveFormsModule,NavbarComponent,
   ],
   templateUrl: './addproduct.component.html',
   styleUrl: './addproduct.component.css'
