@@ -4,6 +4,7 @@ const router = express.Router();
 const sellerController = require("../controllers/sellerController");
 const { verifyJwt, getUserMiddleware, fetchWithAuthorization } = require("../dependencies/jwtHelpers");
 const { options } = require("./authRouter");
+// import axios from 'axios';
 
 
 /**
@@ -92,8 +93,8 @@ const { options } = require("./authRouter");
 
 
 // fetchWithAuthorization("localhost:3000/seller/createProduct", options = { method: 'GET' })
-// router.post("/createProduct", verifyJwt, getUserMiddleware, sellerController.createProduct);
-router.post("/createProduct", sellerController.createProduct);
+router.post("/createProduct", verifyJwt, getUserMiddleware, sellerController.createProduct);
+// router.post("/createProduct", sellerController.createProduct);
 
 
 
