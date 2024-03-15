@@ -10,12 +10,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  searchQuery: string = '';
-  @Output() searchQueryChange = new EventEmitter<string>();
-
+  @Output() searchQuery = new EventEmitter<string>();
+  query = ''
   search(query: string) {
-    this.searchQueryChange.emit(query.trim().toLowerCase());
+    this.searchQuery.emit(query);
   }
-  
-  
+
+
 }

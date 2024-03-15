@@ -9,12 +9,12 @@ import { Component, Input } from '@angular/core';
   styleUrl: './homepage-maincontent.component.css'
 })
 export class HomepageMaincontentComponent {
-  @Input() productData: Array<Product> = [
+  @Input() productData: Array<any> = [
     {
       category: 'Clothing',
       price: 19.99,
       imageUrl: '../../../src/assets/w4-1@2x.png'
     }
   ];
-  @Input() filteredProductData: Product[] = [];
+  @Input() filteredProductData: any = [];
 }

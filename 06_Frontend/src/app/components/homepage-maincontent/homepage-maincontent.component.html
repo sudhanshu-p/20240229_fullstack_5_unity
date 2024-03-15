@@ -15,17 +15,16 @@
 </div> -->
 
 <div class="main-content">
-    <div class="product-grid">
-      <div *ngFor="let product of filteredProductData" class="product-item">
-        <!-- Display the product image -->
-        <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
-  
-        <!-- Display the product category -->
-        <div class="product-category">{{ product.category }}</div>
-  
-        <!-- Display the product price -->
-        <div class="product-price">${{ product.price }}</div>
-      </div>
+  <div class="product-grid">
+    <div *ngFor="let product of filteredProductData" class="product-item">
+      <!-- Display the product image -->
+      <img [src]="product.images[0]" alt="Product Image" class="product-image" />
+      <h3 class="product-title">{{ product.title }}</h3>
+      <!-- Display the product category -->
+      <div class="product-category">{{ product.category }}</div>
+
+      <!-- Display the product price -->
+      <div class="product-price">${{ product.price }}</div>
     </div>
   </div>
-  
+</div>

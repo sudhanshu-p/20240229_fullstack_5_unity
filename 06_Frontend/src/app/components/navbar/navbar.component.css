@@ -104,7 +104,7 @@ body {
   flex: 1;
   position: relative;
   border-radius: var(--br-91xl);
-  background-color: var(--color-gainsboro);
+  background-color: var(white);
   max-width: 100%;
   z-index: 2;
 }

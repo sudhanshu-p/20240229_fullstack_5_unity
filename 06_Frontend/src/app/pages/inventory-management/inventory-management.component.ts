@@ -4,7 +4,7 @@ import { ProductDetailsComponent } from '../../components/product-details/produc
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductService } from '../../product.service';
+// import { ProductService } from '../../product.service';
 
 
 @Component({

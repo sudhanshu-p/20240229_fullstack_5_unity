@@ -1,44 +1,45 @@
 <header class="vector-container">
-    <img class="frame-child9" alt="" src="assets/rectangle-1.svg" />
+  <img class="frame-child9" alt="" src="assets/rectangle-1.svg" />
 
-    <div class="search-store3">Search store</div>
-    <a routerLink="/" class="frame-frame" href="">
+  <div class="search-store3">Search store</div>
+  <a routerLink="/" class="frame-frame" href="">
+    <img
+      class="frame-icon1"
+      loading="lazy"
+      alt=""
+      src="assets/frame.svg"
+      id="frameIcon"
+    />
+  </a>
+  <div class="search-bar">
+    <div class="search-group">
       <img
-        class="frame-icon1"
+        class="search-icon3"
         loading="lazy"
         alt=""
-        src="assets/frame.svg"
-        id="frameIcon"
+        src="../../../assets/search.svg"
       />
-    </a>
-    <div class="search-bar">
-      <div class="search-group">
-        <img
-          class="search-icon3"
-          loading="lazy"
-          alt=""
-          src="../../../assets/search.svg"
-        />
 
-        <input type="search" [(ngModel)]="searchQuery" (input)="search(searchQuery)" placeholder="Search Products" class="product-name" id="">
-      </div>
+      <input type="search" [(ngModel)]="query" (keyup)="search(query)" placeholder="Search Products" class="product-name" id="">
+      
     </div>
-    <div class="person-icon3">
-      <div class="group-div" id="groupContainer">
-        <a routerLink="/signin" class="products6" href="/login">SignIn</a>
-        <div class="separator-line"></div>
-      </div>
-      <div class="group-div" id="groupContainer">
-        <a routerLink="/signup" class="products6" href="/register">Signup</a>
-        <div class="separator-line"></div>
-      </div>
+  </div>
+  <div class="person-icon3">
+    <div class="group-div" id="groupContainer">
+      <a routerLink="/signin" class="products6" href="/login">SignIn</a>
+      <div class="separator-line"></div>
     </div>
-    
-      <!-- <img
-        class="person-icon4"
-        loading="lazy"
-        alt=""
-        src="../../../assets/person.svg"
-      /> -->
-   
-  </header>
+    <div class="group-div" id="groupContainer">
+      <a routerLink="/signup" class="products6" href="/register">Signup</a>
+      <div class="separator-line"></div>
+    </div>
+  </div>
+  
+    <!-- <img
+      class="person-icon4"
+      loading="lazy"
+      alt=""
+      src="../../../assets/person.svg"
+    /> -->
+ 
+</header>
