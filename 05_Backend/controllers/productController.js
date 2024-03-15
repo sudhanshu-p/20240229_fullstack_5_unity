@@ -165,6 +165,8 @@ async function getTrendingProductsController(req, res) {
 
 
 
+
+
 // Implement your logic to sort by rating, price, or default to sorting by name
 function sortResults(results, sortField) {
     switch (sortField) {
@@ -201,8 +203,48 @@ function getTrendingProducts(products) {
     return products.filter(Product => Product.trending);
 }
 
+
+
+async function getAllProducts(req, res) {
+    try {
+      // Query the database to get all products
+      const products = await Product.find();
+  
+      // Return the products as JSON response
+      res.status(200).json({ products });
+    } catch (error) {
+      // Handle errors
+      console.error('Error fetching products:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+  
+  async function getProductById(req, res) {
+    try {
+        // Extract the product ID from the query parameters
+        const productId = req.query.productId;
+
+        // Query the database to find the product by its ID
+        const product = await Product.findById(productId);
+
+        // Check if the product exists
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // Return the product as a JSON response
+        res.status(200).json({ product });
+    } catch (error) {
+        // Handle errors
+        console.error('Error fetching product by ID:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 module.exports = {
     addReview,
     searchProducts,
     getTrendingProductsController,
+    getAllProducts,
+    getProductById,
 };

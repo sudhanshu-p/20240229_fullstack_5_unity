@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 <div class="main-content">
     <div class="address-selection">
         <label id="select-address">Shipping Address</label>
@@ -47,10 +47,9 @@
                   </mat-form-field>
                 </td>
               </tr>
-            </table>
-            <button type="submit" mat-raised-button color="primary">Submit</button>
+            </table>     
           </form>
-          
+          <button type="submit" mat-raised-button color="primary" (click)="payNow()">Submit</button>
         <!-- <add-new-address></add-new-address> -->
         <!-- <div class="saved-addresses" *ngfor="addresses"></div> -->
     </div>
@@ -88,7 +87,7 @@
         <div class="order-detail">
             <div class="order-total-section">
                 <div class="left">Order Total: </div>
-                <div class="right">$70.44</div>
+                <div class="right">$500</div>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
   <img class="frame-child9" alt="" src="assets/rectangle-1.svg" />
 
   <div class="search-store3">Search store</div>
-  <div class="frame-frame">
+  <a routerLink="/" class="frame-frame" href="">
     <img
       class="frame-icon1"
       loading="lazy"
@@ -10,7 +10,7 @@
       src="assets/frame.svg"
       id="frameIcon"
     />
-  </div>
+  </a>
   <div class="search-bar">
     <div class="search-group">
       <img
@@ -20,13 +20,21 @@
         src="../../../assets/search.svg"
       />
 
-      <input type="search" name="" placeholder="Search Products" class="product-name" id="">
+      <input type="search"  placeholder="Search Products" class="product-name" id="">
+      
     </div>
   </div>
-  <a class="register-as-buyer1" id="registerAsBuyer" href="/register">
-    Signup
-   </a>
-   <a class="register-as-buyer1" id="registerAsBuyer" href="/login">
-    Login
-   </a>
+  <div class="person-icon3">
+    <div class="group-div" id="groupContainer">
+      <a routerLink="/signin" class="products6" href="/login">SignIn</a>
+      <div class="separator-line"></div>
+    </div>
+    <div class="group-div" id="groupContainer">
+      <a routerLink="/signup" class="products6" href="/register">Signup</a>
+      <div class="separator-line"></div>
+    </div>
+  </div>
+  
+    
+ 
 </header>
