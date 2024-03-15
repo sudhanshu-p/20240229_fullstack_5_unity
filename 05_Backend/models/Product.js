@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema({
     max: 255,
   },
   images: {
-    type: String,
+    type: Array,
     // required: true,
   },
   seller_id: {

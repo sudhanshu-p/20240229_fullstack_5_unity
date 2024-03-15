@@ -133,7 +133,7 @@ async payNow() {
     // your options here
     description: 'Sample Razorpay demo',
     currency: 'INR',
-    amount: 300000,
+    amount: 50000,
     name: 'Arya',
     key: 'rzp_test_j7qFgqoX4YyrV9',
     image: '',
