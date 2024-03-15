@@ -147,11 +147,11 @@ async function signin(req, res) {
 
     // Create and assign a token
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '10h' });
-
+    // localStorage.setItem('jwtToken', token); // Store token in localStorage
     // Send the token in the response Body
     // Once the frontend and backend are connected,
     // the token will be sent in the response header
-    // res.status(200).json({ token, role: user.role });
+    res.status(200).json({ token, role: user.role });
     // if (res.ok) {
     //   localStorage.setItem('token', token);
       
@@ -161,7 +161,6 @@ async function signin(req, res) {
 
     // Store the token temporarily in another file in root
     // tokenManager.setToken(token);
-    localStorage.setItem('jwtToken', token); // Store token in localStorage
     // setAuthToken(token);
 
   } catch (error) {

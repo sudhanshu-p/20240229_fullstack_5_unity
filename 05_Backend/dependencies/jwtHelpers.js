@@ -111,4 +111,4 @@ async function getUserMiddleware(req, res, next) {
   next();
 }
 
-module.exports = { verifyJwt, getUserFromId, getUserMiddleware, fetchWithAuthorization };
+module.exports = { verifyJwt, getUserFromId, getUserMiddleware };

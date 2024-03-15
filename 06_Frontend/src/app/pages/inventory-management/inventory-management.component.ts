@@ -29,11 +29,22 @@ export class InventoryManagementComponent {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` }); // Create Authorization header
 
     const data = {
-      
+      "title": "Mobile phone",
+      "description": "iPhone 3Gs",
+      "stock": 3000,
+      "images": [
+        "https://5.imimg.com/data5/NN/PW/XN/SELLER-8587078/11-500x500.jpg"
+      ],
+      "category": "Electonics ",
+      "price": 43000,
+      "reviews": [],
+      "__v": 0,
+      "trending": true,
+      "thumbnailUrl": "https://5.imimg.com/data5/NN/PW/XN/SELLER-8587078/11-500x500.jpg"
     };
 
     try {
-      const response = await this.http.get<any>('http://localhost:3000/seller/createProduct', { headers }).toPromise();
+      const response = await this.http.post<any>('http://localhost:3000/seller/createProduct', data, { headers }).toPromise();
       // const response = await this.http.get<any>('http://localhost:3000/seller/createProduct', data, { headers }).toPromise();
       
       console.log('Data from protected route:', response);
