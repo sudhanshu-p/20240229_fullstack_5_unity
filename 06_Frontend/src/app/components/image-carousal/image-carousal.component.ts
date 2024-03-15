@@ -47,6 +47,7 @@ export class ImageCarousalComponent implements OnInit {
     this.http.get(`http://localhost:3000/product/getProductById?productId=${this.productId}`).subscribe({
       next: (response: any) => {
         this.productDetail= response;
+        console.log(this.productDetail);
   // Assign the response directly to productDetail
       },
       error: (err) => {

@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { HomepageNavbarComponent } from '../../components/homepage-navbar/homepage-navbar.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+declare var Razorpay: any;
 @Component({
   selector: 'app-checkout-page',
   standalone: true,
@@ -63,5 +64,41 @@ export class CheckoutPageComponent {
     } else {
       console.log('Form is not valid!');
     }
+  }
+
+  
+  payNow() {
+    console.log("clicked");
+    const options = {
+      description: 'Sample Razorpay demo',
+      currency: 'INR',
+      amount: 300000,
+      name: 'Arya',
+      key: 'rzp_test_j7qFgqoX4YyrV9',
+      image: '',
+      prefill: {
+        name:"Arya Deshmukh",
+        email: 'deshmukharya61@gmail.com',
+        contact: '9322953799',
+      },
+      theme: {
+        color: '#f37254',
+      },
+      modal: {
+        ondismiss: () => {
+          console.log('Payment dismissed');
+        },
+      },
+    };
+
+    const successCallback = (paymentId: any) => {
+      console.log('Payment successful with ID:', paymentId);
+    };
+
+    const failureCallback = (error: any) => {
+      console.error('Payment failed with error:', error);
+    };
+
+    Razorpay.open(options, successCallback, failureCallback);
   }
 }
