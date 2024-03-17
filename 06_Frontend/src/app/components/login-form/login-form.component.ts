@@ -41,26 +41,27 @@ export class LoginFormComponent {
 
   onSubmit() {
     console.log("submit pressed");
-    // if (this.signupForm.valid) {
-      console.log('Form submitted successfully!');
-      console.log(this.loginForm.value);
-      const userData = {
-        email:this.loginForm.value.email,
-        password:this.loginForm.value.password
+    console.log('Form submitted successfully!');
+    console.log(this.loginForm.value);
+    const userData = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    };
+
+    this.http.post('http://localhost:3000/auth/signin', userData).subscribe({
+      next: (response) => {
+        // Handle the response if needed
+        console.log('Login successful', response);
+        alert('Login successful'); // Alert message for successful login
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        // Handle any errors here
+        console.error('Login failed', error);
       }
-      this.http.post('http://localhost:3000/auth/signin',userData).subscribe({
-        next: (response) => {
-          // Handle the response if needed
-          console.log('Login successful', response);
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          // Handle any errors here
-          console.error('Login failed', error);
-        }
-      });
-  // }
-}
+    });
+  }
+
 emailFormControl = new FormControl('', [
   Validators.required,
   Validators.email,
