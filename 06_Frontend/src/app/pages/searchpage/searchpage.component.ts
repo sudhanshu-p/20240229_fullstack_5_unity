@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HomepageSidebarComponent } from '../components/homepage-sidebar/homepage-sidebar.component';
-import { HomepageNavbarComponent } from '../components/homepage-navbar/homepage-navbar.component';
-import { SearchpageMaincontentComponent } from '../components/searchpage-maincontent/searchpage-maincontent.component';
+import { HomepageSidebarComponent } from '../../components/homepage-sidebar/homepage-sidebar.component';
+import { HomepageNavbarComponent } from '../../components/homepage-navbar/homepage-navbar.component';
+import { SearchpageMaincontentComponent } from '../../components/searchpage-maincontent/searchpage-maincontent.component';
 
 
 @Component({

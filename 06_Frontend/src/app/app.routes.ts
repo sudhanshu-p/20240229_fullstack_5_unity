@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 // Importing the page components
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { SearchpageComponent } from './searchpage/searchpage.component';
+import { SearchpageComponent } from './pages/searchpage/searchpage.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductComponent } from './pages/product/product.component';
 import { MyOrdersBuyersComponent } from './pages/my-orders-buyers/my-orders-buyers.component';
