@@ -44,27 +44,28 @@ export class RegisterFormComponent  {
 
   onSubmit() {
     console.log("submit pressed");
-    // if (this.signupForm.valid) {
-      console.log('Form submitted successfully!');
-      console.log(this.signupForm.value);
-      const userData = {
-        username:this.signupForm.value.username,
-        email:this.signupForm.value.email,
-        password:this.signupForm.value.password,
-        role: 'user'
+    console.log('Form submitted successfully!');
+    console.log(this.signupForm.value);
+    const userData = {
+      username: this.signupForm.value.username,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+      role: 'user'
+    };
+
+    this.http.post('http://localhost:3000/auth/signup', userData).subscribe({
+      next: (response) => {
+        // Handle the response if needed
+        console.log('Signup successful', response);
+        alert('User registered successfully'); // Alert message for successful registration
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        // Handle any errors here
+        console.error('Signup failed', error);
       }
-      this.http.post('http://localhost:3000/auth/signup',userData).subscribe({
-        next: (response) => {
-          // Handle the response if needed
-          console.log('Signup successful', response);
-        },
-        error: (error) => {
-          // Handle any errors here
-          console.error('Signup failed', error);
-        }
-      });
-  // }
-}
+    });
+  }
 emailFormControl = new FormControl('', [
   Validators.required,
   Validators.email,
