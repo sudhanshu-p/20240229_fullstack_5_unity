@@ -27,7 +27,7 @@ import { Router } from '@angular/router';
 export class LoginFormComponent {
   // Define an event emitter to notify the parent component about the user role change
   @Output() userRoleChange: EventEmitter<'user' | 'seller'> = new EventEmitter<'user' | 'seller'>();
-
+  isAuthenticated: boolean = false;
 
   loginForm: FormGroup;
   constructor(private formBuilder: FormBuilder,private http:HttpClient, private router: Router) 
@@ -53,6 +53,7 @@ export class LoginFormComponent {
         // Handle the response if needed
         console.log('Login successful', response);
         alert('Login successful'); // Alert message for successful login
+        this.isAuthenticated = true;
         this.router.navigate(['/']);
       },
       error: (error) => {

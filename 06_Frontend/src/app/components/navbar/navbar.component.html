@@ -25,11 +25,11 @@
     </div>
   </div>
   <div class="person-icon3">
-    <div class="group-div" id="groupContainer">
+    <div *ngIf="!isAuthenticated" class="group-div" id="groupContainer">
       <a routerLink="/signin" class="products6" href="/login">SignIn</a>
       <div class="separator-line"></div>
     </div>
-    <div class="group-div" id="groupContainer">
+    <div *ngIf="!isAuthenticated" class="group-div" id="groupContainer">
       <a routerLink="/signup" class="products6" href="/register">Signup</a>
       <div class="separator-line"></div>
     </div>
