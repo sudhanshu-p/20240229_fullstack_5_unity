@@ -45,7 +45,7 @@ app.use("/checkout", checkoutRouter);
 async function startServerAndDatabase() {
   await connectToDatabase();
   app.listen(process.env.PORT || 3000, () =>
-    console.log(`Server live at ${process.env.PORT || 3000}`)
+    console.log(`Server live at $({http://localhost:3000}`)
   );
 }
 
