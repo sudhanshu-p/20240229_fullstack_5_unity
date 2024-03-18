@@ -20,7 +20,7 @@
         src="../../../assets/search.svg"
       />
 
-      <input type="search"  placeholder="Search Products" class="product-name" id="">
+      <input type="search"  placeholder="Search Products" class="product-name"  name="search" placeholder="Type here to search..."  [(ngModel)]="searchText" (keyup)="filterCars()"><i class="fa fa-search"></i>
       
     </div>
   </div>

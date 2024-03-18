@@ -45,3 +45,408 @@
     --padding-8xs: 5px;
     --padding-9xs: 4px;
 }
+
+
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+.popup-overlay {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+}
+
+.product-page-child {
+    align-self: stretch;
+    height: 854px;
+    position: relative;
+    background-color: var(--c1-j);
+    display: none;
+}
+.downloads {
+    height: 30px;
+    position: relative;
+    letter-spacing: 0.2px;
+    line-height: 30px;
+    text-transform: capitalize;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right: var(--padding-xl);
+}
+.frame-child7,
+.frame-child8 {
+    align-self: stretch;
+    height: 72px;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.downloads-parent {
+    width: 178.4px;
+    height: 161.2px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px 0;
+}
+.frame-child9 {
+    height: 84px;
+    width: 1440px;
+    position: relative;
+    display: none;
+    max-width: 100%;
+}
+.frame-icon1,
+.search-store3 {
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+.search-store3 {
+    height: 28.7px;
+    width: 170px;
+    font-weight: 500;
+    display: none;
+    -webkit-text-stroke: 1px #000;
+    white-space: nowrap;
+}
+.frame-icon1 {
+    width: 39px;
+    height: 38px;
+    overflow: hidden;
+    z-index: 1;
+}
+.frame-frame {
+    height: 44px;
+    width: 117px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+}
+.search-icon3 {
+    position: relative;
+    cursor: pointer;
+    top: 3px;
+    height: 31.3px;
+    width: 24.3px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    min-height: 31px;
+    z-index: 1;
+}
+.search-group input {
+    padding: 0px 10px;
+}
+.product-name {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-91xl);
+    background-color: var();
+    max-width: 100%;
+    z-index: 2;
+}
+.search-bar,
+.search-group {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+}
+.search-group {
+    align-self: stretch;
+    height: 31px;
+    flex-direction: row;
+    gap: 0 8px;
+}
+.search-bar {
+    width: 619px;
+    flex-direction: column;
+    padding: 0 0 var(--padding-7xs);
+    box-sizing: border-box;
+}
+.products6,
+.separator-line {
+    position: relative;
+}
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+.popup-overlay {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+}
+
+.product-page-child {
+    align-self: stretch;
+    height: 854px;
+    position: relative;
+    background-color: var(--c1-j);
+    display: none;
+}
+.downloads {
+    height: 30px;
+    position: relative;
+    letter-spacing: 0.2px;
+    line-height: 30px;
+    text-transform: capitalize;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right: var(--padding-xl);
+}
+.frame-child7,
+.frame-child8 {
+    align-self: stretch;
+    height: 72px;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.downloads-parent {
+    width: 178.4px;
+    height: 161.2px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px 0;
+}
+.frame-child9 {
+    height: 84px;
+    width: 1440px;
+    position: relative;
+    display: none;
+    max-width: 100%;
+}
+.frame-icon1,
+.search-store3 {
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+.search-store3 {
+    height: 28.7px;
+    width: 170px;
+    font-weight: 500;
+    display: none;
+    -webkit-text-stroke: 1px #000;
+    white-space: nowrap;
+}
+.frame-icon1 {
+    width: 39px;
+    height: 38px;
+    overflow: hidden;
+    z-index: 1;
+}
+.frame-frame {
+    height: 44px;
+    width: 117px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+}
+.search-icon3 {
+    position: relative;
+    cursor: pointer;
+    top: 3px;
+    height: 31.3px;
+    width: 24.3px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    min-height: 31px;
+    z-index: 1;
+}
+.search-group input {
+    padding: 0px 10px;
+}
+.product-name {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-91xl);
+    background-color: var(white);
+    max-width: 100%;
+    z-index: 2;
+}
+.product-name {
+    width: 300px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    font-size: 16px; /* Adjust font size as needed */
+}
+.search-icon3 {
+    width: 24px; /* Adjust width of the icon */
+    height: 24px; /* Adjust height of the icon */
+    margin-top: 5px; /* Adjust top margin to move the icon down */
+    color: white; /* Set color to white */
+}
+
+.fa-search {
+    font-size: 20px; /* Adjust icon size as needed */
+    margin-left: 10px; /* Adjust left margin for spacing between input and icon */
+}
+.search-group {
+    align-self: stretch;
+    height: 31px;
+    flex-direction: row;
+    gap: 0 8px;
+}
+.search-bar {
+    width: 619px;
+    flex-direction: column;
+    padding: 0 0 var(--padding-7xs);
+    box-sizing: border-box;
+}
+.products6,
+.separator-line {
+    position: relative;
+}
+.separator-line {
+    align-self: stretch;
+    height: 1.7px;
+    background-color: var(--color-black);
+}
+.group-div {
+    height: 27px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-6xs);
+    cursor: pointer;
+    z-index: 1;
+}
+.person-icon4 {
+    height: 32px;
+    width: 34px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 1;
+}
+.person-icon3 {
+    cursor: pointer;
+    width: 149px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0 43px;
+    color: var(--color-black);
+    font-family: var(--font-abyssinica-sil);
+    font-size: 22px;
+}
+.vector-container {
+    align-self: stretch;
+    background-color: #5967c8;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: var(--padding-smi) 91px var(--padding-8xl) var(--padding-15xl);
+    box-sizing: border-box;
+    top: 0;
+    z-index: 99;
+    position: sticky;
+    gap: var(--gap-xl);
+    max-width: 100%;
+    text-align: left;
+    font-size: var(--font-size-mid);
+    color: var(--color-gray-100);
+    font-family: var(--font-circular-std);
+
+}
+
+
+.images {
+    display: flex;
+    flex-direction: column; /* Display rows in a column */
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-8xs) 0 0;
+    box-sizing: border-box;
+}
+
+.product-grid {
+    display: flex; /* Change to flex to display products in a row */
+    width: 100%;
+    gap: 2em;
+    padding: 2em;
+    flex-wrap: wrap; /* Allow products to wrap to the next row */
+    justify-content: flex-start;
+}
+
+.product {
+    flex: 1; /* Take up equal space in the row */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.product-image {
+    aspect-ratio: 518 / 760;
+    height: 24em;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.main1 {
+    position: relative;
+    top: -330px; /* Adjust the value to shift it up */
+    left: 250px; /* Adjust the value to shift it to the right */
+}
+
+/* Adjustments for responsiveness */
+@media screen and (max-width: 768px) {
+    .search-bar {
+        width: 100%; /* Change width to full screen width on smaller devices */
+    }
+
+    .search-group {
+        flex-direction: column; /* Change direction to column for better stacking */
+        align-items: center; /* Center items horizontally */
+    }
+
+    .search-group input {
+        width: 100%; /* Make input field full width */
+    }
+
+    .search-icon3 {
+        margin-top: 10px; /* Adjust margin for better alignment */
+    }
+
+    .frame-frame {
+        padding-left: 10px; /* Adjust padding for better spacing */
+    }
+
+    .person-icon3 {
+        gap: 10px; /* Adjust gap between elements */
+    }
+}
