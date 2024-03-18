@@ -2,7 +2,9 @@
 // External dependencies
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+// const tokenManager = require("../tokenManager");
 require("dotenv").config();
+// import axios from 'axios';
 
 // Internal dependencies
 const User = require("../models/user");
@@ -12,6 +14,19 @@ const {
   passwordValidator,
   roleValidator,
 } = require("../dependencies/validators/User");
+
+
+
+
+// Function to set the Authorization header with the JWT token
+// const setAuthToken = (token) => {
+//   if (token) {
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+//   } else {
+//     delete axios.defaults.headers.common['Authorization'];
+//   }
+// };
+
 
 
 
@@ -132,17 +147,22 @@ async function signin(req, res) {
 
     // Create and assign a token
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '10h' });
-
+    // localStorage.setItem('jwtToken', token); // Store token in localStorage
     // Send the token in the response Body
     // Once the frontend and backend are connected,
     // the token will be sent in the response header
     res.status(200).json({ token, role: user.role });
-    if (res.ok) {
-      localStorage.setItem('token', token);
+    // if (res.ok) {
+    //   localStorage.setItem('token', token);
       
-      localStorage.setItem('role', user.role);
-      console.log("Stored locally")
-    }
+    //   localStorage.setItem('role', user.role);
+    //   console.log("Stored locally")
+    // }
+
+    // Store the token temporarily in another file in root
+    // tokenManager.setToken(token);
+    // setAuthToken(token);
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
