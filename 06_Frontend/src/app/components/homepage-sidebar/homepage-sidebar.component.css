@@ -1,27 +1,29 @@
 .explore1 {
-    margin: 0;
-    height: 47px;
-    position: relative;
-    font-size: 30px;
-    font-weight: 700;
-    font-family: inherit;
-    display: inline-block;
-    padding-right: var(--padding-xl);
+  margin: 0;
+  height: 47px;
+  position: relative;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-block;
+  padding-right: var(--padding-xl);
 }
 
-
-/*  */
 .explore-frame {
   flex: 1;
   flex-direction: column;
   gap: 23px 0;
 }
+
 .explore,
-.explore-frame{
+.explore-frame {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+}
 
+.explore1 {
+  margin-top: 30px;
 }
 
 .explore {
@@ -29,7 +31,7 @@
   flex-shrink: 0;
   flex-direction: column;
   gap: 45px 0;
-  padding-top: 30px;
+  padding-top: 40px;
   padding-left: 30px;
 }
 
@@ -42,4 +44,31 @@
   padding: 0 var(--padding-xl) 0 0;
   gap: 0 13px;
   margin-left: 30px;
+}
+
+.explore1,
+.explore-frame h2 {
+  color: black;
+}
+
+/* Increase height between h2 tags */
+.explore-frame h2 {
+  gap: 30px; /* Adjust the value to increase or decrease the height */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .explore {
+    flex-direction: row; /* Change flex direction to row */
+    padding: 20px 0; /* Adjust padding */
+  }
+  
+  .category {
+    margin-left: 0; /* Remove left margin */
+    gap: 10px; /* Adjust gap between items */
+  }
+  
+  .explore-frame h2 {
+    margin-bottom: 20px; /* Add margin bottom to h2 tags */
+  }
 }

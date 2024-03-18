@@ -14,9 +14,11 @@ import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashbo
 import { OrderDetailsBuyerComponent } from './components/order-details-buyer/order-details-buyer.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
+import { MainComponent } from './components/main/main.component';
+import { HomepageMaincontentComponent } from './components/homepage-maincontent/homepage-maincontent.component';
 export const routes: Routes = [
-    { path: '', component: HomepageComponent },
-    { path: 'product', component: ProductComponent },
+    { path: '', component: MainComponent },
+    { path: 'product', component: HomepageComponent },
     { path: 'myorderbuyer', component: MyOrdersBuyersComponent },
     { path: 'myorderseller', component: MyOrdersSellerComponent },
     { path: 'inventory', component: InventoryManagementComponent },

@@ -1,51 +1,59 @@
-import { Component, OnInit } from '@angular/core';
 
+import { CommonModule } from '@angular/common';
+import { ProductService } from '../../productService'; 
 import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-
-
+import { Component,Input,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { ProductPipe } from '../../components/homepage-maincontent/product.pipe';
 import { HomepageSidebarComponent } from '../../components/homepage-sidebar/homepage-sidebar.component';
-import { HomepageMaincontentComponent } from '../../components/homepage-maincontent/homepage-maincontent.component';
-// import { HomepageNavbarComponent } from '../../components/homepage-navbar/homepage-navbar.component';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [HomepageSidebarComponent, HomepageMaincontentComponent, NavbarComponent],
-  // template: `
-  //   <app-homepage-sidebar [categoryData]="categoryData7"></app-homepage-sidebar>
-  //   <app-homepage-maincontent [productData]="productData7"></app-homepage-maincontent>
-  // `,
+  imports: [CommonModule,RouterModule,ReactiveFormsModule,CommonModule,FormsModule,ProductPipe,HomepageSidebarComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
 
-export class HomepageComponent implements OnInit {
-  categoryData7: string[] = [];
+export class HomepageComponent  implements OnInit {
+  product: any[] = []; // Define an array to store product data
+  searchText: string = '';
 
-  productData7: Product[] = [];
-  productTitles7: string[] = [];
-  productPrice7: string[] = [];
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
+  onSearchChange(): void {
+    this.filterCars();
+  }
 
   ngOnInit() {
-    this.http.get<any>('http://localhost:3000/product/getTrendingProducts').pipe(
-      catchError(error => {
-        console.error('Error fetching trending products:', error);
-        return throwError(error);
-      })
-    ).subscribe(response => {
-      // Check if response contains products array
-      if (response.products && response.products.length > 0) {
-        // Assuming products array is directly returned in the response
-        // Extract thumbnailUrls and categories from the response
-        this.productData7 = response.products.map((product: { thumbnailUrl: any; }) => product.thumbnailUrl);
-        this.productData7 = response.products.map((product: { thumbnailUrl: any; }) => product.thumbnailUrl);
-        this.productData7 = response.products.map((product: { thumbnailUrl: any; }) => product.thumbnailUrl);
-        this.categoryData7 = response.products.map((product: { category: any; }) => product.category);
+    this.fetchCarDetails();
+  }
+  
+  // Add filterUsers method to filter the users array
+  filterCars(): void {
+    if (this.searchText) {
+      this.product = this.product.filter((product: any) =>
+        product.title.toLowerCase().includes(this.searchText.toLowerCase())  ||
+        product.category.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        product.price.toString().toLowerCase().includes(this.searchText.toLowerCase())
+        
+      );
+    } else {
+      // If searchText is empty, reset the cars array to the original list
+      this.fetchCarDetails();
+    }
+  }
+
+  fetchCarDetails() {
+    this.http.get<any>('http://localhost:3000/product/getAllProducts').subscribe({
+      next: (response) => {
+        console.log(response);
+        this.product = response.products; // Assuming 'products' is the key containing the array of products
+      },
+      error: (err) => {
+        console.error('Error fetching product data:', err);
       }
     });
   }

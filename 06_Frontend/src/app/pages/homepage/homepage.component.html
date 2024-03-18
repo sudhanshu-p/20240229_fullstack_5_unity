@@ -12,17 +12,69 @@
 
 
     <!-- Header section with class "frame-a" -->
-    <app-navbar></app-navbar>
+    <header class="vector-container">
+        <img class="frame-child9" alt="" src="assets/rectangle-1.svg" />
+      
+        <div class="search-store3">Search store</div>
+        <a routerLink="/" class="frame-frame" href="">
+          <img
+            class="frame-icon1"
+            loading="lazy"
+            alt=""
+            src="assets/frame.svg"
+            id="frameIcon"
+          />
+        </a>
+        <div class="search-bar">
+          <div class="search-group">
+            <img
+              class="search-icon3"
+              loading="lazy"
+              alt=""
+              src="../../../assets/search.svg"
+            />
+      
+            <input type="search"  placeholder="Search Products" class="product-name"  name="search" placeholder="Type here to search..."  [(ngModel)]="searchText" (keyup)="filterCars()"><i class="fa fa-search"></i>
+            
+          </div>
+        </div>
+        <div class="person-icon3">
+          <div class="group-div" id="groupContainer">
+            <a  class="products6" href="/login">SignIn</a>
+            <div class="separator-line"></div>
+          </div>
+          <div class="group-div" id="groupContainer">
+            <a class="products6" href="/register">Signup</a>
+            <div class="separator-line"></div>
+          </div>
+        </div>
+      </header>
+      
     <!-- Main content section with class "frame-h" -->
     <main class="frame-h">
 
         <!-- Section with class "frame-i" -->
-        <section class="frame-i">
+        <section>
             <!-- Container with class "group-j" -->
-            <div class="group-j">
-
-                <app-homepage-sidebar [categoryData]="categoryData7"></app-homepage-sidebar>
-                <app-homepage-maincontent></app-homepage-maincontent>
+            <div>
+                <app-homepage-sidebar></app-homepage-sidebar>
+                <div class="main1">
+                <div class="images">
+                    <div class="product-grid">
+                      <div *ngFor="let product of product | product: searchText">
+                        <div class="product">
+                          <img class="product-image"  [src]="product.thumbnailUrl" alt="{{ product.title }}" />
+                          <h3 class="product-title">Name:{{ product.title }}</h3>
+                          <h3 class="product-title">Category:{{ product.category }}</h3>
+                          <h4 class="product-price">{{ product.price | currency: 'USD' }}</h4>
+                          <a [routerLink]="['/product']" [queryParams]="{ _id: product._id }">
+                            <button class="product-button">View</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
             <!-- Container with class "product-texts" -->
             </div>
         </section>

@@ -104,7 +104,7 @@ body {
   flex: 1;
   position: relative;
   border-radius: var(--br-91xl);
-  background-color: var(white);
+  background-color: var();
   max-width: 100%;
   z-index: 2;
 }
@@ -319,3 +319,5 @@ body {
   color: var(--color-gray-100);
   font-family: var(--font-circular-std);
 }
+
+

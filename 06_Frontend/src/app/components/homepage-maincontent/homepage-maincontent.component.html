@@ -10,9 +10,11 @@
     </div>
 </div> -->
 
+
+
 <div class="images">
     <div class="product-grid">
-      <div *ngFor="let product of productData">
+      <div *ngFor="let product of product | product: searchText">
         <div class="product">
           <img class="product-image"  [src]="product.thumbnailUrl" alt="{{ product.title }}" />
           <h3 class="product-title">Name:{{ product.title }}</h3>
